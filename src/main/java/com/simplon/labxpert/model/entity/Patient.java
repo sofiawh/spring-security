@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -29,6 +30,8 @@ public class Patient {
     private long patientID;
     @Column(name = "firstName")
     private String firstName;
+    @Column(name = "patientEmail")
+    private String patientEmail;
     @Column(name = "lastName")
     private String lastName;
     @Column(name="dateOfBirth")
@@ -39,6 +42,7 @@ public class Patient {
     private String address;
     @Column(name = "phoneNumber")
     private String phoneNumber;
-
+    @OneToMany(mappedBy = "patient")
+    private List<Sample> samples;
 
 }

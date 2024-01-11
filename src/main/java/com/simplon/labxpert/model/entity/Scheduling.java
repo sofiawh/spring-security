@@ -1,5 +1,6 @@
 package com.simplon.labxpert.model.entity;
 
+import com.simplon.labxpert.model.enums.Priority;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,5 +31,9 @@ public class Scheduling {
     private LocalDate startDateAndTime;
     @Column(name = "endDateAndTime")
     private LocalDate endDateAndTime;
-
+    private Priority priority;
+    private String notes;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }

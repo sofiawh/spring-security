@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -31,6 +32,17 @@ public class Analysis {
     private String comments;
     @OneToOne(mappedBy = "analysis")
     private Result result;
-
-
+    @ManyToOne
+    @JoinColumn(name = "sample_id")
+    private Sample sample;
+    @ManyToMany
+    @JoinTable(
+            name = "analysis_reagent",
+            joinColumns = @JoinColumn(name = "analysis_id"),
+            inverseJoinColumns = @JoinColumn(name = "reagent_id")
+    )
+    private List<Reagent> reagents;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }

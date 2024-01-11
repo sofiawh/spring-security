@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -32,4 +33,9 @@ public class Sample {
     private LocalDate collectionDate;
     @Column(name = "sampleStatus")
     private SampleStatus sampleStatus;
+    @ManyToOne
+    @JoinColumn(name = "patient_id")
+    private Patient patient;
+    @OneToMany(mappedBy = "sample")
+    private List<Analysis> analyses;
 }

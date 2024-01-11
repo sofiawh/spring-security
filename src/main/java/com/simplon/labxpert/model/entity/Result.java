@@ -35,9 +35,8 @@ public class Result {
     private String measurementUnits;
     @Column(name = "resultStatus")
     private ResultStatus resultStatus;
-
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "analysisID", referencedColumnName = "analysisID")
+    @JoinColumn(name = "analysis_id")
     private Analysis analysis;
 
 }

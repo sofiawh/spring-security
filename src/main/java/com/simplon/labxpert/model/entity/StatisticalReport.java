@@ -5,10 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 
 @Getter
@@ -29,7 +27,13 @@ public class StatisticalReport {
             generator = "statisticalReport_id_sequence"
     )
     private long statisticalReportID;
+    private Timestamp creationDate;
+    private String createdBy;
+    @Column(name = "reportName")
     private String reportName;
-    private LocalDate reportType;
-    private String reportPeriod;
+    @Column(name = "reportType")
+    private String reportType;
+    @Column(name = "reportPeriod")
+    private LocalDate reportPeriod;
+
 }

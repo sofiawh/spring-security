@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -30,6 +31,8 @@ public class User {
     @NotNull
     @Column(name = "email")
     private String email;
+    @Column(name = "emailVerified")
+    private Boolean emailVerified = false;
     @NotNull
     @Column(name = "username")
     private String username;
@@ -43,4 +46,8 @@ public class User {
     @NotNull
     @Column(name = "personalInfo")
     private String personalInfo;
+    @OneToMany(mappedBy = "user")
+    private List<Scheduling> schedulings;
+    @OneToMany(mappedBy = "user")
+    private List<Analysis> analyses;
 }

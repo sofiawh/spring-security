@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -33,4 +34,8 @@ public class Reagent {
     private LocalDate expirationDate;
     @Column(name = "supplier")
     private String supplier;
+
+    @ManyToMany(mappedBy = "reagents")
+    private List<Analysis> analyses;
+
 }
