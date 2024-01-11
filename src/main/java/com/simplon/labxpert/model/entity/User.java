@@ -28,6 +28,9 @@ public class User {
     @Column(name = "userID")
     private long userID;
     @NotNull
+    @Column(name = "email")
+    private String email;
+    @NotNull
     @Column(name = "username")
     private String username;
     @NotNull
@@ -37,4 +40,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(name = "userRole")
     private UserRole userRole;
+    @NotNull
+    @Column(name = "personalInfo")
+    private String personalInfo;
 }

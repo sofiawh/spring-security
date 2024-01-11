@@ -14,7 +14,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "Results")
+@Table(name = "results")
 public class Result {
 
     @Id
@@ -35,5 +35,9 @@ public class Result {
     private String measurementUnits;
     @Column(name = "resultStatus")
     private ResultStatus resultStatus;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "analysisID", referencedColumnName = "analysisID")
+    private Analysis analysis;
 
 }
