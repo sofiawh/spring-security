@@ -2,10 +2,7 @@ package com.simplon.labxpert.model.entity;
 
 import com.simplon.labxpert.model.enums.ResultStatus;
 import com.simplon.labxpert.model.entity.Analysis;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -13,6 +10,7 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "results")
 public class Result {
@@ -33,7 +31,7 @@ public class Result {
     private double resultValues;
     @Column(name = "measurementUnits")
     private String measurementUnits;
-    @Column(name = "resultStatus")
+    @Enumerated(EnumType.STRING)
     private ResultStatus resultStatus;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "analysis_id")
