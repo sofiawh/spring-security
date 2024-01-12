@@ -5,11 +5,13 @@ import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "reagents")
 public class Reagent {
@@ -34,8 +36,6 @@ public class Reagent {
     private LocalDate expirationDate;
     @Column(name = "supplier")
     private String supplier;
-
-    @ManyToMany(mappedBy = "reagents")
-    private List<Analysis> analyses;
-
+    @OneToMany(mappedBy = "reagent")
+    private List<AnalysisReagent> analysisReagents;
 }

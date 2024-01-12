@@ -32,7 +32,7 @@ public class Sample {
     private String sampleDescription;
     @Column(name = "collectionDate")
     private LocalDate collectionDate;
-    @Column(name = "sampleStatus")
+    @Enumerated(EnumType.STRING)
     private SampleStatus sampleStatus = SampleStatus.PENDING;
     @ManyToOne
     @JoinColumn(name = "patient_id")

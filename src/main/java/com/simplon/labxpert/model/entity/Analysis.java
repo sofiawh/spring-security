@@ -1,15 +1,18 @@
 package com.simplon.labxpert.model.entity;
 
+import com.simplon.labxpert.model.enums.AnalysisStatus;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "analysis")
 public class Analysis {
@@ -30,22 +33,17 @@ public class Analysis {
     private LocalDate endDate;
     @Column(name = "comments")
     private String comments;
+    @Enumerated(EnumType.STRING)
+    private AnalysisStatus analysisStatus = AnalysisStatus.NEED_SCHEDULING;
     @OneToOne(mappedBy = "analysis")
     private Result result;
     @ManyToOne
     @JoinColumn(name = "sample_id")
     private Sample sample;
-    @ManyToMany
-    @JoinTable(
-            name = "analysis_reagent",
-            joinColumns = @JoinColumn(name = "analysis_id"),
-            inverseJoinColumns = @JoinColumn(name = "reagent_id")
-    )
-    private List<Reagent> reagents;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-    @ManyToOne
-    @JoinColumn(name = "analysis_id")
-    private Analysis analysis;
+    @OneToMany(mappedBy = "analysis")
+    private List<AnalysisReagent> analysisReagents;
+
 }
