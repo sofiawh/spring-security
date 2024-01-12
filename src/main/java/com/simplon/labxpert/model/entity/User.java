@@ -27,12 +27,12 @@ public class User {
     @Column(name = "userID")
     private long userID;
     @NotNull
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
     @Column(name = "emailVerified")
     private Boolean emailVerified = false;
     @NotNull
-    @Column(name = "username")
+    @Column(name = "username", unique = true)
     private String username;
     @NotNull
     @Column(name = "password")
