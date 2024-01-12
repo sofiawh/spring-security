@@ -11,6 +11,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "samples")
 public class Sample {
@@ -32,7 +33,7 @@ public class Sample {
     @Column(name = "collectionDate")
     private LocalDate collectionDate;
     @Column(name = "sampleStatus")
-    private SampleStatus sampleStatus;
+    private SampleStatus sampleStatus = SampleStatus.PENDING;
     @ManyToOne
     @JoinColumn(name = "patient_id")
     private Patient patient;
