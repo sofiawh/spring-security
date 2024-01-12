@@ -26,6 +26,8 @@ public class Reagent {
             generator = "reagent_id_sequence"
     )
     private long reagentID;
+    @Column(name = "reagentSerialNumber", unique = true)
+    private String reagentSerialNumber;
     @Column(name = "reagentName")
     private String reagentName;
     @Column(name = "reagentDescription")
