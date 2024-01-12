@@ -45,4 +45,7 @@ public class Analysis {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+    @ManyToOne
+    @JoinColumn(name = "analysis_id")
+    private Analysis analysis;
 }

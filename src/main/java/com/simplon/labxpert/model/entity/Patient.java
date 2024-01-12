@@ -1,10 +1,7 @@
 package com.simplon.labxpert.model.entity;
 
 import com.simplon.labxpert.model.enums.Gender;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -14,6 +11,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "patients")
 public class Patient {
@@ -30,7 +28,7 @@ public class Patient {
     private long patientID;
     @Column(name = "firstName")
     private String firstName;
-    @Column(name = "patientEmail")
+    @Column(name = "patientEmail", unique = true)
     private String patientEmail;
     @Column(name = "lastName")
     private String lastName;

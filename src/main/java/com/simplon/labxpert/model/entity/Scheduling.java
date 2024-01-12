@@ -31,9 +31,14 @@ public class Scheduling {
     private LocalDate startDateAndTime;
     @Column(name = "endDateAndTime")
     private LocalDate endDateAndTime;
+    @Enumerated(EnumType.STRING)
     private Priority priority;
+    @Column(name = "notes")
     private String notes;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+    @ManyToOne
+    @JoinColumn(name = "analysis_id")
+    private Analysis analysis;
 }
