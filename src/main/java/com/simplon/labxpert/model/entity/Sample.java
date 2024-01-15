@@ -1,5 +1,6 @@
 package com.simplon.labxpert.model.entity;
 
+import com.simplon.labxpert.model.enums.AnalysisType;
 import com.simplon.labxpert.model.enums.SampleStatus;
 import lombok.*;
 
@@ -26,8 +27,9 @@ public class Sample {
             generator = "sample_id_sequence"
     )
     private long sampleID;
-    @Column(name = "analysisType")
-    private String analysisType;
+    @NonNull
+    @Enumerated(EnumType.STRING)
+    private AnalysisType analysisType;
     @Column(name = "sampleDescription")
     private String sampleDescription;
     @Column(name = "collectionDate")

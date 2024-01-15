@@ -27,6 +27,7 @@ public class Reagent {
     )
     private long reagentID;
     @Column(name = "reagentSerialNumber", unique = true)
+    // TODO: MAKE A METHOD TO GENERATE SERIAL NUMBER @CHAIMAA
     private String reagentSerialNumber;
     @Column(name = "reagentName")
     private String reagentName;

@@ -30,7 +30,7 @@ public class User {
     @Column(name = "email", unique = true)
     private String email;
     @Column(name = "emailVerified")
-    private Boolean emailVerified = false;
+    private Boolean isEmailVerified = false;
     @NotNull
     @Column(name = "username", unique = true)
     private String username;
@@ -39,13 +39,10 @@ public class User {
     private String password;
     @NotNull
     @Enumerated(EnumType.STRING)
-    @Column(name = "userRole")
     private UserRole userRole;
     @NotNull
     @Column(name = "personalInfo")
     private String personalInfo;
     @OneToMany(mappedBy = "user")
     private List<Scheduling> schedulings;
-    @OneToMany(mappedBy = "user")
-    private List<Analysis> analyses;
 }

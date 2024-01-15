@@ -1,6 +1,7 @@
 package com.simplon.labxpert.model.entity;
 
 import com.simplon.labxpert.model.enums.AnalysisStatus;
+import com.simplon.labxpert.model.enums.ResultStatus;
 import lombok.*;
 
 import javax.persistence.*;
@@ -35,15 +36,15 @@ public class Analysis {
     private String comments;
     @Enumerated(EnumType.STRING)
     private AnalysisStatus analysisStatus = AnalysisStatus.NEED_SCHEDULING;
-    @OneToOne(mappedBy = "analysis")
-    private Result result;
+    @Enumerated(EnumType.STRING)
+    private ResultStatus resultStatus;
     @ManyToOne
     @JoinColumn(name = "sample_id")
     private Sample sample;
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
     @OneToMany(mappedBy = "analysis")
     private List<AnalysisReagent> analysisReagents;
-
+    @OneToMany(mappedBy = "analysis")
+    private List<Scheduling> schedulings;
+    @OneToMany(mappedBy = "analysis")
+    private List<TestResult> testResults;
 }

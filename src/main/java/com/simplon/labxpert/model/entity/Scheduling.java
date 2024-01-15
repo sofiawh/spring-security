@@ -30,7 +30,7 @@ public class Scheduling {
     @Column(name = "endDateAndTime")
     private LocalDate endDateAndTime;
     @Enumerated(EnumType.STRING)
-    private Priority priority;
+    private Priority priority = Priority.NORMAL;
     @Column(name = "notes")
     private String notes;
     @ManyToOne
