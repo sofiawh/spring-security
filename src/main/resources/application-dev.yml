@@ -14,7 +14,6 @@ spring:
     hibernate:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-      #understand ddl-auto??
       ddl-auto: update
     properties:
       hibernate:
@@ -22,10 +21,11 @@ spring:
         format_sql: true
     show-sql: true
 
-
 logging:
   level:
     root: INFO
     org.springframework.web: DEBUG
-    org.hibernate.SQL: DEBUG
-
+    com.simplon.labxpert: DEBUG
+    org.hibernate.SQL: ERROR
+  file:
+    name: logs/labxpert.log

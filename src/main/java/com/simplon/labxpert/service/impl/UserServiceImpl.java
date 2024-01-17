@@ -1,6 +1,6 @@
 package com.simplon.labxpert.service.impl;
 
-import com.simplon.labxpert.exception.customException.CustomNotFoundException;
+import com.simplon.labxpert.exception.handler.CustomNotFoundException;
 import com.simplon.labxpert.mapper.UserMapper;
 import com.simplon.labxpert.model.dto.UserDTO;
 import com.simplon.labxpert.model.entity.User;
@@ -23,6 +23,7 @@ public class UserServiceImpl implements UserService {
     private static final String USER_NOT_FOUND = "User not found with id: ";
     private UserRepository userRepository;
     private UserMapper userMapper;
+
     @Autowired
     public UserServiceImpl(UserRepository userRepository, UserMapper userMapper) {
         this.userRepository = userRepository;
@@ -31,79 +32,144 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO getUserById(long id){
-        Optional<User> user = userRepository.findById(id);
-        if (!user.isPresent()) {
-            throw new CustomNotFoundException(USER_NOT_FOUND + id, HttpStatus.NOT_FOUND);
-        }else {
-            return userMapper.toDTO(user.get());
+        try {
+            LOGGER.info("Fetching user with ID: {}", id);
+            Optional<User> user = userRepository.findById(id);
+            if (!user.isPresent()) {
+                throw new CustomNotFoundException(USER_NOT_FOUND + id, HttpStatus.NOT_FOUND);
+            } else {
+                return userMapper.toDTO(user.get());
+            }
+        } catch (Exception e) {
+            LOGGER.error("Error occurred while fetching user with ID: {}", id, e);
+            throw e;
         }
     }
 
     @Override
     public UserDTO getUserByUsername(String username) {
-        Optional<User> user = userRepository.findByUsername(username);
-        if (!user.isPresent()) {
-            throw new CustomNotFoundException("User not found with username: " + username, HttpStatus.NOT_FOUND);
-        }else {
-            return userMapper.toDTO(user.get());
+        try {
+            LOGGER.info("Fetching user with username: {}", username);
+            Optional<User> user = userRepository.findByUsername(username);
+            if (!user.isPresent()) {
+                throw new CustomNotFoundException("User not found with username: " + username, HttpStatus.NOT_FOUND);
+            } else {
+                return userMapper.toDTO(user.get());
+            }
+        } catch (Exception e) {
+            LOGGER.error("Error occurred while fetching user with username: {}", username, e);
+            throw e;
         }
     }
 
     @Override
     public UserDTO getUserByEmail(String email) {
-        Optional<User> user = userRepository.findByEmail(email);
-        if (!user.isPresent()) {
-            throw new CustomNotFoundException("User not found with email: " + email, HttpStatus.NOT_FOUND);
-        }else {
-            return userMapper.toDTO(user.get());
+        try {
+            LOGGER.info("Fetching user with email: {}", email);
+            Optional<User> user = userRepository.findByEmail(email);
+            if (!user.isPresent()) {
+                throw new CustomNotFoundException("User not found with email: " + email, HttpStatus.NOT_FOUND);
+            } else {
+                return userMapper.toDTO(user.get());
+            }
+        } catch (Exception e) {
+            LOGGER.error("Error occurred while fetching user with email: {}", email, e);
+            throw e;
         }
     }
 
     @Override
     public List<UserDTO> getAllUsers() {
-        List<User> users = userRepository.findAll();
-        return users.stream().map(userMapper::toDTO).collect(Collectors.toList());
+        try {
+            LOGGER.info("Fetching all users");
+            List<User> users = userRepository.findAll();
+            return users.stream().map(userMapper::toDTO).collect(Collectors.toList());
+        } catch (Exception e) {
+            LOGGER.error("Error occurred while fetching all users", e);
+            throw e;
+        }
     }
 
     @Override
     public UserDTO createUser(UserDTO userDTO) {
-        User user = userMapper.toEntity(userDTO);
-        validateUser(user);
-        User savedUser = userRepository.save(user);
-        return userMapper.toDTO(savedUser);
+        try {
+            LOGGER.info("Creating new user");
+            User user = userMapper.toEntity(userDTO);
+            validateUser(user);
+            User savedUser = userRepository.save(user);
+            return userMapper.toDTO(savedUser);
+        } catch (Exception e) {
+            LOGGER.error("Error occurred while creating user", e);
+            throw e;
+        }
     }
 
     private void validateUser(User user) {
-        Optional<User> userOptional = userRepository.findByUsername(user.getUsername());
-        if (userOptional.isPresent()) {
-            throw new CustomNotFoundException("Username already exists", HttpStatus.BAD_REQUEST);
-        }
-        userOptional = userRepository.findByEmail(user.getEmail());
-        if (userOptional.isPresent()) {
-            throw new CustomNotFoundException("Email already exists", HttpStatus.BAD_REQUEST);
+        try {
+            LOGGER.info("Validating user");
+            Optional<User> userOptional = userRepository.findByUsername(user.getUsername());
+            if (userOptional.isPresent()) {
+                throw new CustomNotFoundException("Username already exists", HttpStatus.BAD_REQUEST);
+            }
+            userOptional = userRepository.findByEmail(user.getEmail());
+            if (userOptional.isPresent()) {
+                throw new CustomNotFoundException("Email already exists", HttpStatus.BAD_REQUEST);
+            }
+        } catch (Exception e) {
+            LOGGER.error("Error occurred while validating user", e);
+            throw e;
         }
     }
-    // TODO : @Ayoub : i should check the update if works fine alsso add author to the project worling on logger and javaDoc
+
     @Override
-    public UserDTO updateUser(UserDTO userDTO,long id) {
-        User user = userMapper.toEntity(userDTO);
-        Optional<User> userOptional = userRepository.findById(id);
-        if (!userOptional.isPresent()) {
-            throw new CustomNotFoundException(USER_NOT_FOUND + id, HttpStatus.NOT_FOUND);
+    public UserDTO updateUser(UserDTO userDTO, long id) {
+        try {
+            LOGGER.info("Updating user with ID: {}", id);
+            Optional<User> existingUserOptional = userRepository.findById(id);
+            if (!existingUserOptional.isPresent()) {
+                throw new CustomNotFoundException(USER_NOT_FOUND + id, HttpStatus.NOT_FOUND);
+            }
+            User user = userMapper.toEntity(userDTO);
+            validateUser(user, id);
+            user.setUserID(id);
+            User savedUser = userRepository.save(user);
+            return userMapper.toDTO(savedUser);
+        } catch (Exception e) {
+            LOGGER.error("Error occurred while updating user with ID: {}", id, e);
+            throw e;
         }
-        validateUser(user);
-        user.setUserID(id);
-        User savedUser = userRepository.save(user);
-        return userMapper.toDTO(savedUser);
+    }
+
+    private void validateUser(User user, Long id) {
+        try {
+            LOGGER.info("Validating user with ID: {}", id);
+            Optional<User> userOptional = userRepository.findByUsernameAndUserIDNot(user.getUsername(), id);
+            if (userOptional.isPresent()) {
+                throw new CustomNotFoundException("Username already exists", HttpStatus.BAD_REQUEST);
+            }
+            userOptional = userRepository.findByEmailAndUserIDNot(user.getEmail(), id);
+            if (userOptional.isPresent()) {
+                throw new CustomNotFoundException("Email already exists", HttpStatus.BAD_REQUEST);
+            }
+        } catch (Exception e) {
+            LOGGER.error("Error occurred while validating user with ID: {}", id, e);
+            throw e;
+        }
     }
 
     @Override
     public ResponseEntity<String> deleteUser(long id) {
-        Optional<User> userOptional = userRepository.findById(id);
-        if (!userOptional.isPresent()) {
-            throw new CustomNotFoundException(USER_NOT_FOUND + id, HttpStatus.NOT_FOUND);
+        try {
+            LOGGER.info("Deleting user with ID: {}", id);
+            Optional<User> userOptional = userRepository.findById(id);
+            if (!userOptional.isPresent()) {
+                throw new CustomNotFoundException(USER_NOT_FOUND + id, HttpStatus.NOT_FOUND);
+            }
+            userRepository.delete(userOptional.get());
+            return new ResponseEntity<>("User With id : " + id + " deleted succefully ", HttpStatus.OK);
+        } catch (Exception e) {
+            LOGGER.error("Error occurred while deleting user with ID: {}", id, e);
+            throw e;
         }
-        userRepository.delete(userOptional.get());
-        return new ResponseEntity<>("User deleted successfully", HttpStatus.OK);
     }
 }

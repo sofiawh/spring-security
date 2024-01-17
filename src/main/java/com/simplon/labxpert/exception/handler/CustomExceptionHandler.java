@@ -1,7 +1,5 @@
-package com.simplon.labxpert.exception.customException;
+package com.simplon.labxpert.exception.handler;
 
-import com.simplon.labxpert.exception.customException.CustomNotFoundException;
-import com.simplon.labxpert.exception.handler.CustomErrorResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
