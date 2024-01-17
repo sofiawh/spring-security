@@ -72,6 +72,13 @@
             <artifactId>lombok-mapstruct-binding</artifactId>
             <version>0.1.0</version>
         </dependency>
+
+        <!-- hibernate validator ... -->
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>7.0.2.Final</version> <!-- Replace with the latest version -->
+        </dependency>
     </dependencies>
 
     <build>
