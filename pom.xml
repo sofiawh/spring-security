@@ -95,7 +95,6 @@
             <version>7.0.2.Final</version> <!-- Replace with the latest version -->
         </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
