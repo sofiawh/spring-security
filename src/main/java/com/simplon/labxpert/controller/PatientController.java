@@ -85,11 +85,12 @@ public class PatientController {
      *
      * @param patientId A {@code patientId} object representing the patient's id. It is expected in the path variable.
      * <p>If the operation is successful, it responds with an HTTP status OK (200) and the patient retrieved.
-     * If there it responds with an HTTP status CONFLICT(409).
+     * If there it patient with the patient id don't exist with an HTTP status NOT_FOUND(404).
      * If an exception occurs during the operation, it responds with an HTTP status INTERNAL_SERVER_ERROR (500).</p>
      *
      * @return A {@code ResponseEntity<PatientDTO>} containing a {@code PatientDTO} object.
-     *         The HTTP status is OK (200) if the operation is successful. if there is a conflict it responds with an HTTP status CONFLICT(409) otherwise if there is an exception it responds with an HTTP status INTERNAL_SERVER_ERROR (500) .
+     *         The HTTP status is OK (200) if the operation is successful. If the patient with the patientId doesn't exist return respond  with an HTTP status NOT_FOUND(404).
+     *         otherwise if there is an exception it responds with an HTTP status INTERNAL_SERVER_ERROR (500) .
      */
 
     @GetMapping("/{patientId}")
@@ -104,7 +105,22 @@ public class PatientController {
         }
 
     }
-
+    /**
+     * Update a Patient already existing in the system.
+     *
+     * <p>This endpoint is mapped to the HTTP PUT method using the {@code @PutMapping} annotation.
+     * It returns a {@code ResponseEntity<PatientDTO>} containing a {@code PatientDTO} of the updated object.</p>
+     *
+     * @param patientId A {@code patientId} object representing the patient's id. It is expected in the path variable.
+     * @param patient A {@code patient} object representing the patientDTO. It is expected in the body.
+     * <p>If the operation is successful, it responds with an HTTP status OK (200) and the patient updated.
+     * If there is no patient with the patientId return HTTP status NOT_FOUND(404).
+     * If an exception occurs during the operation, it responds with an HTTP status INTERNAL_SERVER_ERROR (500).</p>
+     *
+     * @return A {@code ResponseEntity<PatientDTO>} containing a {@code PatientDTO} of the updated object.
+     *         The HTTP status is OK (200) if the operation is successful. If the patient with the patientId doesn't exist return respond  with an HTTP status NOT_FOUND(404).
+     *         otherwise if there is other exception it responds with an HTTP status INTERNAL_SERVER_ERROR (500) .
+     */
     // TODO : check if the email passed exists
     @PutMapping("/{patientId}")
     public ResponseEntity<PatientDTO> updatePatient( @PathVariable long patientId,@Valid @RequestBody PatientDTO patient){
@@ -117,6 +133,18 @@ public class PatientController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
+    /**
+     * Remove a Patient from  the system.
+     *
+     * <p>This endpoint is mapped to the HTTP DELETE method using the {@code @DeleteMapping} annotation.
+     * It returns void.</p>
+     *
+     * @param patientId A {@code patientId} object representing the patient's id. It is expected in the path variable.
+     * <p>If the operation is successful, it return with an HTTP status OK (200).
+     * If there it patient with the patient id don't exist with an HTTP status NOT_FOUND(404).
+     * If an other exception occurs during the operation, it responds with an HTTP status INTERNAL_SERVER_ERROR (500).</p>
+     */
+
     @DeleteMapping("/{patientId}")
     public ResponseEntity<Void> deletePatient( @PathVariable long patientId){
         try {
@@ -128,7 +156,21 @@ public class PatientController {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
             }
     }
-
+    /**
+     * Retrieves a Patient by his email  from the system.
+     *
+     * <p>This endpoint is mapped to the HTTP GET method using the {@code @GetMapping} annotation.
+     * It returns a {@code ResponseEntity<PatientDTO>} containing a {@code PatientDTO} object.</p>
+     *
+     * @param email A {@code patientId} object representing the patient's Email. It is expected in the request Parameter.
+     * <p>If the operation is successful, it return with an HTTP status OK (200) and the patient retrieved.
+     * If there is no patient with the patient email respond HTTP status NOT_FOUND(404).
+     * If an exception occurs during the operation, it responds with an HTTP status INTERNAL_SERVER_ERROR (500).</p>
+     *
+     * @return A {@code ResponseEntity<PatientDTO>} containing a {@code PatientDTO} object.
+     *         The HTTP status is OK (200) if the operation is successful. If the patient with the patientId doesn't exist return respond  with an HTTP status NOT_FOUND(404).
+     *         otherwise if there is an exception it responds with an HTTP status INTERNAL_SERVER_ERROR (500) .
+     */
     @GetMapping("/byEmail")
     public ResponseEntity<PatientDTO>  getPatientByEmail(@RequestParam String email){
         try {
