@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.http.HttpStatus;
 
+import java.nio.file.Path;
 import java.time.LocalDateTime;
 @Getter
 @Setter

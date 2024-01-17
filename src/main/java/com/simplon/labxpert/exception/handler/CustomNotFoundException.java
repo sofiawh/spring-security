@@ -1,4 +1,4 @@
-package com.simplon.labxpert.exception.customException;
+package com.simplon.labxpert.exception.handler;
 
 import org.springframework.http.HttpStatus;
 
