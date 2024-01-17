@@ -121,7 +121,6 @@ public class PatientController {
      *         The HTTP status is OK (200) if the operation is successful. If the patient with the patientId doesn't exist return respond  with an HTTP status NOT_FOUND(404).
      *         otherwise if there is other exception it responds with an HTTP status INTERNAL_SERVER_ERROR (500) .
      */
-    // TODO : check if the email passed exists
     @PutMapping("/{patientId}")
     public ResponseEntity<PatientDTO> updatePatient( @PathVariable long patientId,@Valid @RequestBody PatientDTO patient){
         try {

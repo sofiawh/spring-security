@@ -6,6 +6,7 @@ import com.simplon.labxpert.model.entity.Patient;
 import com.simplon.labxpert.repository.PatientRepository;
 import com.simplon.labxpert.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -48,7 +49,7 @@ public class PatientServiceImpl implements PatientService {
         Patient patient = patientMapper.toEntity(patientDTO);
         Optional<Patient> optionalPatient = patientRepository.findByPatientEmail(patient.getPatientEmail());
         if (optionalPatient.isPresent()){
-            // TODO: throw exception
+            throw new DataIntegrityViolationException("patient with that email"+ optionalPatient.get().getPatientEmail() + "already exist ");
         }
         Patient savedPatient = patientRepository.save(patient);
         return patientMapper.toDTO(savedPatient);
@@ -59,7 +60,10 @@ public class PatientServiceImpl implements PatientService {
         Patient existingPatient = patientRepository.findById(patientId).orElseThrow(()-> new NoSuchElementException("Patient not found with ID: " + patientId));
         existingPatient.setFirstName(patientDTO.getFirstName());
         existingPatient.setLastName(patientDTO.getLastName());
-        // TODO : validation of email
+        Optional<Patient> optionalPatient = patientRepository.findByPatientEmail(patientDTO.getPatientEmail());
+        if (optionalPatient.isPresent()){
+            throw new DataIntegrityViolationException("patient with that email"+ optionalPatient.get().getPatientEmail() + "already exist ");
+        }
         existingPatient.setPatientEmail(patientDTO.getPatientEmail());
         existingPatient.setGender(patientDTO.getGender());
         existingPatient.setAddress(patientDTO.getAddress());
