@@ -1,16 +1,17 @@
 package com.simplon.labxpert.service.impl;
 
+import com.simplon.labxpert.exception.customException.CustomNotFoundException;
 import com.simplon.labxpert.mapper.UserMapper;
 import com.simplon.labxpert.model.dto.UserDTO;
 import com.simplon.labxpert.model.entity.User;
 import com.simplon.labxpert.repository.UserRepository;
 import com.simplon.labxpert.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import com.simplon.labxpert.exception.userException.UserNotFoundException;
-import com.simplon.labxpert.exception.userException.UserAlreadyExistsException;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,10 +19,10 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
-
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
+    private static final String USER_NOT_FOUND = "User not found with id: ";
     private UserRepository userRepository;
     private UserMapper userMapper;
-
     @Autowired
     public UserServiceImpl(UserRepository userRepository, UserMapper userMapper) {
         this.userRepository = userRepository;
@@ -29,21 +30,33 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<UserDTO> getUserById(long id) {
-        User user = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User not found with id: " + id));
-        return Optional.of(userMapper.toDTO(user));
+    public UserDTO getUserById(long id){
+        Optional<User> user = userRepository.findById(id);
+        if (!user.isPresent()) {
+            throw new CustomNotFoundException(USER_NOT_FOUND + id, HttpStatus.NOT_FOUND);
+        }else {
+            return userMapper.toDTO(user.get());
+        }
     }
 
     @Override
-    public Optional<UserDTO> getUserByUsername(String username) {
-        User user = userRepository.findByUsername(username).orElseThrow(() -> new UserNotFoundException("User not found with username: " + username));
-        return Optional.of(userMapper.toDTO(user));
+    public UserDTO getUserByUsername(String username) {
+        Optional<User> user = userRepository.findByUsername(username);
+        if (!user.isPresent()) {
+            throw new CustomNotFoundException("User not found with username: " + username, HttpStatus.NOT_FOUND);
+        }else {
+            return userMapper.toDTO(user.get());
+        }
     }
 
     @Override
-    public Optional<UserDTO> getUserByEmail(String email) {
-        User user = userRepository.findByEmail(email).orElseThrow(() -> new UserNotFoundException("User not found with email: " + email));
-        return Optional.of(userMapper.toDTO(user));
+    public UserDTO getUserByEmail(String email) {
+        Optional<User> user = userRepository.findByEmail(email);
+        if (!user.isPresent()) {
+            throw new CustomNotFoundException("User not found with email: " + email, HttpStatus.NOT_FOUND);
+        }else {
+            return userMapper.toDTO(user.get());
+        }
     }
 
     @Override
@@ -61,28 +74,34 @@ public class UserServiceImpl implements UserService {
     }
 
     private void validateUser(User user) {
-//        userRepository.findByEmail(user.getEmail()).ifPresent(u -> {
-//            throw new UserAlreadyExistsException("User already exists with this email");
-//        });
-//        userRepository.findByUsername(user.getUsername()).ifPresent(u -> {
-//            throw new UserAlreadyExistsException("User already exists with this username");
-//        });
+        Optional<User> userOptional = userRepository.findByUsername(user.getUsername());
+        if (userOptional.isPresent()) {
+            throw new CustomNotFoundException("Username already exists", HttpStatus.BAD_REQUEST);
+        }
+        userOptional = userRepository.findByEmail(user.getEmail());
+        if (userOptional.isPresent()) {
+            throw new CustomNotFoundException("Email already exists", HttpStatus.BAD_REQUEST);
+        }
     }
-
+    // TODO : @Ayoub : i should check the update if works fine alsso add author to the project worling on logger and javaDoc
     @Override
     public UserDTO updateUser(UserDTO userDTO,long id) {
         User user = userMapper.toEntity(userDTO);
-        User existingUser = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User not found with id: " + id));
+        Optional<User> userOptional = userRepository.findById(id);
+        if (!userOptional.isPresent()) {
+            throw new CustomNotFoundException(USER_NOT_FOUND + id, HttpStatus.NOT_FOUND);
+        }
         validateUser(user);
-        existingUser = userRepository.save(user);
-        return userMapper.toDTO(existingUser);
+        user.setUserID(id);
+        User savedUser = userRepository.save(user);
+        return userMapper.toDTO(savedUser);
     }
 
     @Override
     public ResponseEntity<String> deleteUser(long id) {
         Optional<User> userOptional = userRepository.findById(id);
         if (!userOptional.isPresent()) {
-            return new ResponseEntity<>("User not found with id: " + id, HttpStatus.NOT_FOUND);
+            throw new CustomNotFoundException(USER_NOT_FOUND + id, HttpStatus.NOT_FOUND);
         }
         userRepository.delete(userOptional.get());
         return new ResponseEntity<>("User deleted successfully", HttpStatus.OK);

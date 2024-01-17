@@ -29,22 +29,8 @@ public class UserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<UserDTO> getUserById(@PathVariable long id) {
-        try {
-            UserDTO userDTO = userService.getUserById(id).orElse(null);
-            return new ResponseEntity<>(userDTO, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @GetMapping("/username/{username}")
-    public ResponseEntity<UserDTO> getUserByUsername(@PathVariable String username) {
-        try {
-            UserDTO userDTO = userService.getUserByUsername(username).orElse(null);
-            return new ResponseEntity<>(userDTO, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        UserDTO userDTO = userService.getUserById(id);
+        return new ResponseEntity<>(userDTO, HttpStatus.OK);
     }
 
     @PostMapping
@@ -55,13 +41,9 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserDTO> updateUser(@PathVariable long id, @Valid @RequestBody UserDTO userDTO) {
-        try {
-            UserDTO updatedUser = userService.updateUser(userDTO, id);
-            return new ResponseEntity<>(updatedUser, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public ResponseEntity<UserDTO> updateUser(@Valid @RequestBody UserDTO userDTO, @PathVariable long id) {
+        UserDTO updatedUser = userService.updateUser(userDTO, id);
+        return new ResponseEntity<>(updatedUser, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

@@ -1,6 +1,7 @@
 package com.simplon.labxpert.exception.handler;
 
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -46,6 +47,8 @@ public class GlobalExceptionHandler {
         errors.setStatus(HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
+
+
 
     // TODO : @Chaimaa : ADD A EXCEPTION HANDLER FOR RESOURCE NOT FOUND EXCEPTION
     // TODO : @Chaimaa : NWARIHA SCREENSHOT BILA TA 7AJA MAKHAS TKOUN HKK KOLXE KHAS ITHANDLA
