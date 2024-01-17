@@ -72,6 +72,7 @@
             <artifactId>lombok-mapstruct-binding</artifactId>
             <version>0.1.0</version>
         </dependency>
+<<<<<<< HEAD
         <!-- Validation -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -87,6 +88,14 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>1.2.3</version>
+=======
+
+        <!-- hibernate validator ... -->
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>7.0.2.Final</version> <!-- Replace with the latest version -->
+>>>>>>> group/chaimaa
         </dependency>
     </dependencies>
 
