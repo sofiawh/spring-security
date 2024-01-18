@@ -49,7 +49,7 @@ public class PatientServiceImpl implements PatientService {
         Patient patient = patientMapper.toEntity(patientDTO);
         Optional<Patient> optionalPatient = patientRepository.findByPatientEmail(patient.getPatientEmail());
         if (optionalPatient.isPresent()){
-            throw new DataIntegrityViolationException("patient with that email"+ optionalPatient.get().getPatientEmail() + "already exist ");
+            throw new DataIntegrityViolationException("patient with that email"+ patient.getPatientEmail() + "already exist ");
         }
         Patient savedPatient = patientRepository.save(patient);
         return patientMapper.toDTO(savedPatient);
