@@ -1,7 +1,6 @@
 package com.simplon.labxpert.exception.handler;
 
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -9,6 +8,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.ConstraintViolationException;
 import java.time.LocalDateTime;
@@ -47,10 +47,13 @@ public class GlobalExceptionHandler {
         errors.setStatus(HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
+    @ExceptionHandler(ResponseStatusException.class)
+    public ResponseEntity<CustomErrorResponse> handleResourceNotFoundException(ResponseStatusException ex){
+        CustomErrorResponse errors = new CustomErrorResponse();
+        errors.setStatus(HttpStatus.NOT_FOUND);
+        errors.setError(ex.getReason());
+        errors.setTimestamp(LocalDateTime.now());
+        return new ResponseEntity<>(errors,HttpStatus.NOT_FOUND);
 
-
-
-    // TODO : @Chaimaa : ADD A EXCEPTION HANDLER FOR RESOURCE NOT FOUND EXCEPTION
-    // TODO : @Chaimaa : NWARIHA SCREENSHOT BILA TA 7AJA MAKHAS TKOUN HKK KOLXE KHAS ITHANDLA
-
+    }
 }
