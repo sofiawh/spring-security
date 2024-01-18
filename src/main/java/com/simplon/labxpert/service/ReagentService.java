@@ -8,6 +8,7 @@ import java.util.List;
 public interface ReagentService {
     List<ReagentDTO> getAllReagents();
     List<ReagentDTO> getAllReagentsByStatus(ReagentStatus status);
+    List<ReagentDTO> getAllReagentsThatWillExpireSoon(int days);
     List<ReagentDTO> getAllReagentsThatExpired();
     ReagentDTO getReagentById(long reagentID);
     ReagentDTO addReagent(ReagentDTO reagentDTO);

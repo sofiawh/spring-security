@@ -4328,3 +4328,121 @@ com.simplon.labxpert.exception.handler.CustomNotFoundException: The expiration d
 2024-01-18 12:16:41.375  INFO 8708 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2024-01-18 12:16:41.379  INFO 8708 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2024-01-18 12:16:41.387  INFO 8708 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-01-18 12:35:19.736  WARN 10838 --- [restartedMain] o.s.boot.StartupInfoLogger               : InetAddress.getLocalHost().getHostName() took 5001 milliseconds to respond. Please verify your network configuration (macOS machines may need to add entries to /etc/hosts).
+2024-01-18 12:35:24.739  WARN 10838 --- [restartedMain] o.s.boot.system.ApplicationPid           : ManagementFactory.getRuntimeMXBean().getName() took 5001 milliseconds to respond. This may be due to slow host name resolution. Please verify your network configuration (macOS machines may need to add entries to /etc/hosts).
+2024-01-18 12:35:24.746  INFO 10838 --- [restartedMain] c.simplon.labxpert.LabXpertApplication   : Starting LabXpertApplication using Java 1.8.0_202 on MacBook-Pro-de-Ayoub.local with PID 10838 (/Users/ayoub/Documents/Simplon/LabXpert/LabXpert/target/classes started by ayoub in /Users/ayoub/Documents/Simplon/LabXpert/LabXpert)
+2024-01-18 12:35:24.747 DEBUG 10838 --- [restartedMain] c.simplon.labxpert.LabXpertApplication   : Running with Spring Boot v2.7.11, Spring v5.3.27
+2024-01-18 12:35:24.747  INFO 10838 --- [restartedMain] c.simplon.labxpert.LabXpertApplication   : The following 1 profile is active: "dev"
+2024-01-18 12:35:24.804  INFO 10838 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-01-18 12:35:24.804  INFO 10838 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-01-18 12:35:25.593  INFO 10838 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-01-18 12:35:25.730  INFO 10838 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 123 ms. Found 10 JPA repository interfaces.
+2024-01-18 12:35:26.488  INFO 10838 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9090 (http)
+2024-01-18 12:35:26.496  INFO 10838 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-01-18 12:35:26.496  INFO 10838 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.74]
+2024-01-18 12:35:26.589  INFO 10838 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-01-18 12:35:26.590  INFO 10838 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1785 ms
+2024-01-18 12:35:26.878  INFO 10838 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-01-18 12:35:26.956  INFO 10838 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.15.Final
+2024-01-18 12:35:27.381  INFO 10838 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2024-01-18 12:35:27.528  INFO 10838 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-01-18 12:35:27.815  INFO 10838 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-01-18 12:35:27.839  INFO 10838 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2024-01-18 12:35:28.986  INFO 10838 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-01-18 12:35:29.003  INFO 10838 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-01-18 12:35:29.682  WARN 10838 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-01-18 12:35:29.861 DEBUG 10838 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-01-18 12:35:29.969 DEBUG 10838 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 23 mappings in 'requestMappingHandlerMapping'
+2024-01-18 12:35:30.002 DEBUG 10838 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2024-01-18 12:35:30.018 DEBUG 10838 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-01-18 12:35:30.347  INFO 10838 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-01-18 12:35:30.396  INFO 10838 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9090 (http) with context path ''
+2024-01-18 12:35:30.417  INFO 10838 --- [restartedMain] c.simplon.labxpert.LabXpertApplication   : Started LabXpertApplication in 26.261 seconds (JVM running for 32.108)
+2024-01-18 12:35:30.454  INFO 10838 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-01-18 12:35:30.468  INFO 10838 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-01-18 12:35:30.481  INFO 10838 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-01-18 12:37:32.016  WARN 10995 --- [restartedMain] o.s.boot.StartupInfoLogger               : InetAddress.getLocalHost().getHostName() took 5001 milliseconds to respond. Please verify your network configuration (macOS machines may need to add entries to /etc/hosts).
+2024-01-18 12:37:37.018  WARN 10995 --- [restartedMain] o.s.boot.system.ApplicationPid           : ManagementFactory.getRuntimeMXBean().getName() took 5001 milliseconds to respond. This may be due to slow host name resolution. Please verify your network configuration (macOS machines may need to add entries to /etc/hosts).
+2024-01-18 12:37:37.020  INFO 10995 --- [restartedMain] c.simplon.labxpert.LabXpertApplication   : Starting LabXpertApplication using Java 1.8.0_202 on MacBook-Pro-de-Ayoub.local with PID 10995 (/Users/ayoub/Documents/Simplon/LabXpert/LabXpert/target/classes started by ayoub in /Users/ayoub/Documents/Simplon/LabXpert/LabXpert)
+2024-01-18 12:37:37.021 DEBUG 10995 --- [restartedMain] c.simplon.labxpert.LabXpertApplication   : Running with Spring Boot v2.7.11, Spring v5.3.27
+2024-01-18 12:37:37.021  INFO 10995 --- [restartedMain] c.simplon.labxpert.LabXpertApplication   : The following 1 profile is active: "dev"
+2024-01-18 12:37:37.070  INFO 10995 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-01-18 12:37:37.070  INFO 10995 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-01-18 12:37:37.807  INFO 10995 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-01-18 12:37:37.909  INFO 10995 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 89 ms. Found 10 JPA repository interfaces.
+2024-01-18 12:37:38.588  INFO 10995 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9090 (http)
+2024-01-18 12:37:38.596  INFO 10995 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-01-18 12:37:38.596  INFO 10995 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.74]
+2024-01-18 12:37:38.672  INFO 10995 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-01-18 12:37:38.672  INFO 10995 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1601 ms
+2024-01-18 12:37:38.875  INFO 10995 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-01-18 12:37:38.929  INFO 10995 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.15.Final
+2024-01-18 12:37:39.169  INFO 10995 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2024-01-18 12:37:39.281  INFO 10995 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-01-18 12:37:39.539  INFO 10995 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-01-18 12:37:39.555  INFO 10995 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2024-01-18 12:37:40.597  INFO 10995 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-01-18 12:37:40.609  INFO 10995 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-01-18 12:37:41.603  WARN 10995 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-01-18 12:37:41.858 DEBUG 10995 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-01-18 12:37:42.012 DEBUG 10995 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 23 mappings in 'requestMappingHandlerMapping'
+2024-01-18 12:37:42.057 DEBUG 10995 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2024-01-18 12:37:42.075 DEBUG 10995 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-01-18 12:37:42.432  INFO 10995 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-01-18 12:37:42.512  INFO 10995 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9090 (http) with context path ''
+2024-01-18 12:37:42.537  INFO 10995 --- [restartedMain] c.simplon.labxpert.LabXpertApplication   : Started LabXpertApplication in 26.037 seconds (JVM running for 32.02)
+2024-01-18 12:37:52.769  INFO 10995 --- [http-nio-9090-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-01-18 12:37:52.771  INFO 10995 --- [http-nio-9090-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-01-18 12:37:52.771 DEBUG 10995 --- [http-nio-9090-exec-2] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2024-01-18 12:37:52.771 DEBUG 10995 --- [http-nio-9090-exec-2] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2024-01-18 12:37:52.771 DEBUG 10995 --- [http-nio-9090-exec-2] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2024-01-18 12:37:52.772 DEBUG 10995 --- [http-nio-9090-exec-2] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@78c374d6
+2024-01-18 12:37:52.773 DEBUG 10995 --- [http-nio-9090-exec-2] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@5cd02884
+2024-01-18 12:37:52.773 DEBUG 10995 --- [http-nio-9090-exec-2] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2024-01-18 12:37:52.773  INFO 10995 --- [http-nio-9090-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-01-18 12:37:52.795 DEBUG 10995 --- [http-nio-9090-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/api/v1/reagents/expiring-soon?days=5", parameters={masked}
+2024-01-18 12:37:52.809 DEBUG 10995 --- [http-nio-9090-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.simplon.labxpert.controller.ReagentController#getAllReagentsThatWillExpireSoon(int)
+2024-01-18 12:38:09.190  INFO 10995 --- [http-nio-9090-exec-2] c.s.l.service.impl.UserServiceImpl       : Try To Fetching All Reagents That Will Expire Soon Controller layer
+2024-01-18 12:38:18.753  INFO 10995 --- [http-nio-9090-exec-2] c.s.l.service.impl.UserServiceImpl       : Fetching all reagents that will expire soon
+2024-01-18 12:39:25.542  WARN 10995 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m13s488ms).
+2024-01-18 12:39:30.354 DEBUG 10995 --- [http-nio-9090-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-01-18 12:39:30.356 DEBUG 10995 --- [http-nio-9090-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[]]
+2024-01-18 12:39:30.417 DEBUG 10995 --- [http-nio-9090-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-01-18 12:39:48.332 DEBUG 10995 --- [http-nio-9090-exec-3] o.s.web.servlet.DispatcherServlet        : POST "/api/v1/reagents", parameters={}
+2024-01-18 12:39:48.340 DEBUG 10995 --- [http-nio-9090-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.simplon.labxpert.controller.ReagentController#createReagent(ReagentDTO)
+2024-01-18 12:39:48.672 DEBUG 10995 --- [http-nio-9090-exec-3] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [com.simplon.labxpert.model.dto.ReagentDTO@78d0ed98]
+2024-01-18 12:39:48.684  INFO 10995 --- [http-nio-9090-exec-3] c.s.l.service.impl.UserServiceImpl       : Try to create new Reagent Controller layer
+2024-01-18 12:39:48.761 DEBUG 10995 --- [http-nio-9090-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.simplon.labxpert.exception.handler.CustomExceptionHandler#handleCustomNotFoundException(CustomNotFoundException)
+2024-01-18 12:39:48.794 DEBUG 10995 --- [http-nio-9090-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-01-18 12:39:48.794 DEBUG 10995 --- [http-nio-9090-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [com.simplon.labxpert.exception.handler.CustomErrorResponse@2cca60a8]
+2024-01-18 12:39:48.800  WARN 10995 --- [http-nio-9090-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.simplon.labxpert.exception.handler.CustomNotFoundException: Reagent already exists with name: HASSAN DOLIBRAN MMMMM]
+2024-01-18 12:39:48.801 DEBUG 10995 --- [http-nio-9090-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 409 CONFLICT
+2024-01-18 12:39:58.371 DEBUG 10995 --- [http-nio-9090-exec-4] o.s.web.servlet.DispatcherServlet        : POST "/api/v1/reagents", parameters={}
+2024-01-18 12:39:58.373 DEBUG 10995 --- [http-nio-9090-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.simplon.labxpert.controller.ReagentController#createReagent(ReagentDTO)
+2024-01-18 12:39:58.378 DEBUG 10995 --- [http-nio-9090-exec-4] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [com.simplon.labxpert.model.dto.ReagentDTO@5d171854]
+2024-01-18 12:39:58.380  INFO 10995 --- [http-nio-9090-exec-4] c.s.l.service.impl.UserServiceImpl       : Try to create new Reagent Controller layer
+2024-01-18 12:39:58.494 DEBUG 10995 --- [http-nio-9090-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-01-18 12:39:58.495 DEBUG 10995 --- [http-nio-9090-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [com.simplon.labxpert.model.dto.ReagentDTO@3106eda4]
+2024-01-18 12:39:58.500 DEBUG 10995 --- [http-nio-9090-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 201 CREATED
+2024-01-18 12:40:04.924 DEBUG 10995 --- [http-nio-9090-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/api/v1/reagents/expiring-soon?days=5", parameters={masked}
+2024-01-18 12:40:04.930 DEBUG 10995 --- [http-nio-9090-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.simplon.labxpert.controller.ReagentController#getAllReagentsThatWillExpireSoon(int)
+2024-01-18 12:40:09.529  INFO 10995 --- [http-nio-9090-exec-5] c.s.l.service.impl.UserServiceImpl       : Try To Fetching All Reagents That Will Expire Soon Controller layer
+2024-01-18 12:40:10.983  INFO 10995 --- [http-nio-9090-exec-5] c.s.l.service.impl.UserServiceImpl       : Fetching all reagents that will expire soon
+2024-01-18 12:40:11.038 DEBUG 10995 --- [http-nio-9090-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-01-18 12:40:11.039 DEBUG 10995 --- [http-nio-9090-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[com.simplon.labxpert.model.dto.ReagentDTO@6a1b38ab]]
+2024-01-18 12:40:11.045 DEBUG 10995 --- [http-nio-9090-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-01-18 12:48:30.397 DEBUG 10995 --- [http-nio-9090-exec-8] o.s.web.servlet.DispatcherServlet        : DELETE "/api/v1/reagents/10", parameters={}
+2024-01-18 12:48:30.405 DEBUG 10995 --- [http-nio-9090-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.simplon.labxpert.controller.ReagentController#deleteReagent(long)
+2024-01-18 12:48:30.463  INFO 10995 --- [http-nio-9090-exec-8] c.s.l.service.impl.UserServiceImpl       : Try to delete Reagent Controller layer
+2024-01-18 12:48:30.464  INFO 10995 --- [http-nio-9090-exec-8] c.s.l.service.impl.UserServiceImpl       : delete the reagent By id: 10
+2024-01-18 12:48:30.496  INFO 10995 --- [http-nio-9090-exec-8] c.s.l.service.impl.UserServiceImpl       : Reagent was deleted with this id: 10
+2024-01-18 12:48:30.576 DEBUG 10995 --- [http-nio-9090-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'text/plain', given [*/*] and supported [text/plain, */*, text/plain, */*, application/json, application/*+json, application/json, application/*+json]
+2024-01-18 12:48:30.576 DEBUG 10995 --- [http-nio-9090-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing ["Reagent was deleted with this id: 10"]
+2024-01-18 12:48:30.579 DEBUG 10995 --- [http-nio-9090-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-01-18 12:48:32.654  INFO 10995 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 1 deletion, 0 modifications)
+2024-01-18 12:48:32.668  INFO 10995 --- [Thread-58] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-01-18 12:48:32.670  INFO 10995 --- [Thread-58] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2024-01-18 12:48:32.687  INFO 10995 --- [Thread-58] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-01-18 12:48:32.694  INFO 10995 --- [Thread-58] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-01-18 12:48:32.702  INFO 10995 --- [Thread-58] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-01-18 12:48:48.072  WARN 10995 --- [restartedMain] o.s.boot.StartupInfoLogger               : InetAddress.getLocalHost().getHostName() took 5001 milliseconds to respond. Please verify your network configuration (macOS machines may need to add entries to /etc/hosts).
