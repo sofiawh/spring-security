@@ -4504,3 +4504,64 @@ com.simplon.labxpert.exception.handler.CustomNotFoundException: The expiration d
 2024-01-18 12:49:17.497  INFO 10995 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9090 (http) with context path ''
 2024-01-18 12:49:17.502  INFO 10995 --- [restartedMain] c.simplon.labxpert.LabXpertApplication   : Started LabXpertApplication in 21.314 seconds (JVM running for 727.004)
 2024-01-18 12:49:17.505  INFO 10995 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2024-01-18 12:51:31.865  WARN 12553 --- [restartedMain] o.s.boot.StartupInfoLogger               : InetAddress.getLocalHost().getHostName() took 5001 milliseconds to respond. Please verify your network configuration (macOS machines may need to add entries to /etc/hosts).
+2024-01-18 12:51:36.867  WARN 12553 --- [restartedMain] o.s.boot.system.ApplicationPid           : ManagementFactory.getRuntimeMXBean().getName() took 5001 milliseconds to respond. This may be due to slow host name resolution. Please verify your network configuration (macOS machines may need to add entries to /etc/hosts).
+2024-01-18 12:51:36.869  INFO 12553 --- [restartedMain] c.simplon.labxpert.LabXpertApplication   : Starting LabXpertApplication using Java 1.8.0_202 on MacBook-Pro-de-Ayoub.local with PID 12553 (/Users/ayoub/Documents/Simplon/LabXpert/LabXpert/target/classes started by ayoub in /Users/ayoub/Documents/Simplon/LabXpert/LabXpert)
+2024-01-18 12:51:36.870 DEBUG 12553 --- [restartedMain] c.simplon.labxpert.LabXpertApplication   : Running with Spring Boot v2.7.11, Spring v5.3.27
+2024-01-18 12:51:36.871  INFO 12553 --- [restartedMain] c.simplon.labxpert.LabXpertApplication   : The following 1 profile is active: "dev"
+2024-01-18 12:51:36.931  INFO 12553 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-01-18 12:51:36.932  INFO 12553 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-01-18 12:51:37.594  INFO 12553 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-01-18 12:51:37.681  INFO 12553 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 79 ms. Found 10 JPA repository interfaces.
+2024-01-18 12:51:38.254  INFO 12553 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9090 (http)
+2024-01-18 12:51:38.261  INFO 12553 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-01-18 12:51:38.262  INFO 12553 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.74]
+2024-01-18 12:51:38.342  INFO 12553 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-01-18 12:51:38.342  INFO 12553 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1410 ms
+2024-01-18 12:51:38.551  INFO 12553 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-01-18 12:51:38.601  INFO 12553 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.15.Final
+2024-01-18 12:51:38.854  INFO 12553 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2024-01-18 12:51:38.954  INFO 12553 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-01-18 12:51:39.191  INFO 12553 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-01-18 12:51:39.204  INFO 12553 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2024-01-18 12:51:40.116  INFO 12553 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-01-18 12:51:40.127  INFO 12553 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-01-18 12:51:40.670  WARN 12553 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-01-18 12:51:40.801 DEBUG 12553 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-01-18 12:51:40.880 DEBUG 12553 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 23 mappings in 'requestMappingHandlerMapping'
+2024-01-18 12:51:40.915 DEBUG 12553 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2024-01-18 12:51:40.933 DEBUG 12553 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-01-18 12:51:41.226  INFO 12553 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-01-18 12:51:41.272  INFO 12553 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9090 (http) with context path ''
+2024-01-18 12:51:41.290  INFO 12553 --- [restartedMain] c.simplon.labxpert.LabXpertApplication   : Started LabXpertApplication in 24.867 seconds (JVM running for 30.664)
+2024-01-18 12:54:33.879  INFO 12553 --- [http-nio-9090-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-01-18 12:54:33.880  INFO 12553 --- [http-nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-01-18 12:54:33.880 DEBUG 12553 --- [http-nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2024-01-18 12:54:33.881 DEBUG 12553 --- [http-nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2024-01-18 12:54:33.881 DEBUG 12553 --- [http-nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2024-01-18 12:54:33.882 DEBUG 12553 --- [http-nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@4200e412
+2024-01-18 12:54:33.882 DEBUG 12553 --- [http-nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@7739b1d1
+2024-01-18 12:54:33.882 DEBUG 12553 --- [http-nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2024-01-18 12:54:33.882  INFO 12553 --- [http-nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-01-18 12:54:33.892 DEBUG 12553 --- [http-nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/api/v1/reagents", parameters={}
+2024-01-18 12:54:33.899 DEBUG 12553 --- [http-nio-9090-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.simplon.labxpert.controller.ReagentController#getAllReagents()
+2024-01-18 12:54:33.911  INFO 12553 --- [http-nio-9090-exec-1] c.s.l.service.impl.UserServiceImpl       : Try To Fetching All Reagents Controller layer
+2024-01-18 12:54:33.912  INFO 12553 --- [http-nio-9090-exec-1] c.s.l.service.impl.UserServiceImpl       : Getting all reagents
+2024-01-18 12:54:33.970 DEBUG 12553 --- [http-nio-9090-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-01-18 12:54:33.972 DEBUG 12553 --- [http-nio-9090-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[com.simplon.labxpert.model.dto.ReagentDTO@28c6ad71, com.simplon.labxpert.model.dto.ReagentDTO@259fb (truncated)...]
+2024-01-18 12:54:34.110 DEBUG 12553 --- [http-nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-01-18 12:59:02.685  WARN 12553 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3m23s344ms).
+2024-01-18 13:19:33.448  WARN 12553 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=20m30s763ms).
+2024-01-18 13:35:43.392  WARN 12553 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=15m39s931ms).
+2024-01-18 13:43:26.332  WARN 12553 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4m42s905ms).
+2024-01-18 13:58:54.445  WARN 12553 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Retrograde clock change detected (housekeeper delta=28s40ms), soft-evicting connections from pool.
+2024-01-18 14:14:27.983  WARN 12553 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=15m33s538ms).
+2024-01-18 14:16:24.161  WARN 12553 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=56s175ms).
+2024-01-18 14:19:23.839  WARN 12553 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Retrograde clock change detected (housekeeper delta=29s781ms), soft-evicting connections from pool.
+2024-01-18 14:35:19.740  WARN 12553 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=15m55s901ms).
+2024-01-18 14:39:41.977  WARN 12553 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3m52s229ms).
+2024-01-18 14:44:04.214  WARN 12553 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3m52s229ms).
+2024-01-18 14:49:08.799  WARN 12553 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=5m4s585ms).
+2024-01-18 14:49:38.284  WARN 12553 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Retrograde clock change detected (housekeeper delta=29s485ms), soft-evicting connections from pool.
+2024-01-18 14:50:45.638  WARN 12553 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m7s354ms).
+2024-01-18 15:18:23.974  WARN 12553 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3m38s244ms).
