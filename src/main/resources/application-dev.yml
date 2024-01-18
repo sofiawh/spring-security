@@ -7,9 +7,9 @@ spring:
   application:
     name: labxpert
   datasource:
-    url: jdbc:postgresql://localhost:5432/labxpert
+    url: jdbc:postgresql://localhost:5332/labxpert
     username: postgres
-    password: 1234
+    password: postgres
   jpa:
     hibernate:
       naming:
