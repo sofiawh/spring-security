@@ -15,7 +15,13 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-
+/**
+ * This class is the controller layer of the Reagent entity.
+ * It allows to create, read, update and delete reagents.
+ * It also allows to get all reagents by status, get all expired reagents,
+ * get all reagents that will expire soon and get a reagent by id.
+ * @Author Ayoub Ait Si Ahmad
+ */
 @RestController
 @RequestMapping("/api/v1/reagents")
 public class ReagentController {
@@ -27,6 +33,10 @@ public class ReagentController {
         this.reagentService = reagentService;
     }
 
+    /**
+     * This method allows to get all reagents.
+     * @return a list of all reagents.
+     */
     @GetMapping
     public ResponseEntity<List<ReagentDTO>> getAllReagents() {
         LOGGER.info("Try To Fetching All Reagents Controller layer");
@@ -34,6 +44,11 @@ public class ReagentController {
         return new ResponseEntity<>(reagentDTOList, HttpStatus.OK);
     }
 
+    /**
+     * This method allows to get all reagents by status.
+     * @param reagentStatus the status of the reagents to get.
+     * @return a list of all reagents by status.
+     */
     @GetMapping("/status")
     public ResponseEntity<List<ReagentDTO>> getAllReagentsByStatus(@RequestParam(required = true) ReagentStatus reagentStatus) {
         LOGGER.info("Try To Fetching All Reagents By Status Controller layer");
@@ -41,6 +56,11 @@ public class ReagentController {
         return new ResponseEntity<>(reagentDTOList, HttpStatus.OK);
     }
 
+    /**
+     * This method allows to get a reagent by id.
+     * @param id the id of the reagent to get.
+     * @return the reagent with the given id.
+     */
     @GetMapping("/{id}")
     public ResponseEntity<ReagentDTO> getReagentById(@PathVariable long id) {
         LOGGER.info("Try To Fetching Reagent By Id Controller layer");
@@ -48,7 +68,10 @@ public class ReagentController {
         return new ResponseEntity<>(reagentDTO, HttpStatus.OK);
     }
 
-    // TODO : FIX THE PROBLEM HERE
+    /**
+     * This method allows to get all expired reagents.
+     * @return a list of all expired reagents.
+     */
     @GetMapping("/expired")
     public ResponseEntity<List<ReagentDTO>> getAllExpiredReagents() {
         LOGGER.info("Try To Fetching All Expired Reagents Controller layer");
@@ -56,6 +79,23 @@ public class ReagentController {
         return new ResponseEntity<>(reagentDTOList, HttpStatus.OK);
     }
 
+    /**
+     * This method allows to get all reagents that will expire soon.
+     * @param days the number of days to check.
+     * @return a list of all reagents that will expire soon.
+     */
+    @GetMapping("/expiring-soon")
+    public ResponseEntity<List<ReagentDTO>> getAllReagentsThatWillExpireSoon(@RequestParam(required = true) int days) {
+        LOGGER.info("Try To Fetching All Reagents That Will Expire Soon Controller layer");
+        List<ReagentDTO> reagentDTOList = reagentService.getAllReagentsThatWillExpireSoon(days);
+        return new ResponseEntity<>(reagentDTOList, HttpStatus.OK);
+    }
+
+    /**
+     * This method allows to create a new reagent.
+     * @param reagentDTO the reagent to create.
+     * @return the reagent created.
+     */
     @PostMapping
     public ResponseEntity<ReagentDTO> createReagent(@RequestBody @Valid ReagentDTO reagentDTO) {
         LOGGER.info("Try to create new Reagent Controller layer");
@@ -63,6 +103,12 @@ public class ReagentController {
         return new ResponseEntity<>(reagentCreated, HttpStatus.CREATED);
     }
 
+    /**
+     * This method allows to update a reagent.
+     * @param id the id of the reagent to update.
+     * @param reagentDTO the reagent to update.
+     * @return the reagent updated.
+     */
     @PutMapping("/{id}")
     public ResponseEntity<?> updateReagent(@PathVariable long id, @RequestBody @Valid ReagentDTO reagentDTO) {
         LOGGER.info("Try to update a specific Reagent Controller layer");
@@ -70,6 +116,11 @@ public class ReagentController {
         return new ResponseEntity<>(reagentUpdated, HttpStatus.OK);
     }
 
+    /**
+     * This method allows to delete a reagent.
+     * @param id the id of the reagent to delete.
+     * @return a message that the reagent is deleted.
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteReagent(@PathVariable long id) {
         LOGGER.info("Try to delete Reagent Controller layer");

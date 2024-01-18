@@ -62,6 +62,20 @@ public class ReagentServiceImpl implements ReagentService {
     }
 
     @Override
+    public List<ReagentDTO> getAllReagentsThatWillExpireSoon(int days){
+        try {
+            LOGGER.info("Fetching all reagents that will expire soon");
+            LocalDateTime today = LocalDateTime.now();
+            LocalDateTime afterDays = today.plusDays(days);
+            List<Reagent> reagentList = reagentRepository.findAll().stream().filter(reagent -> reagent.getExpirationDate().isAfter(today) && reagent.getExpirationDate().isBefore(afterDays)).collect(Collectors.toList());
+            return reagentList.stream().map(reagentMappper::toDTO).collect(Collectors.toList());
+        } catch (Exception exception) {
+            LOGGER.error("Error occurred while fetching all reagents that will expire soon", exception);
+            throw exception;
+        }
+    }
+
+    @Override
     public List<ReagentDTO> getAllReagentsThatExpired() {
         try {
             LOGGER.info("Fetching all reagents that expired");
