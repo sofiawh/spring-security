@@ -43,4 +43,6 @@ public class Patient {
     @OneToMany(mappedBy = "patient")
     private List<Sample> samples;
 
+    //TODO adding the historique of analysis
+
 }

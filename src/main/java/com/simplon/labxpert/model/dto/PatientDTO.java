@@ -30,4 +30,18 @@ public class PatientDTO {
     @Pattern(regexp = "\\d{10}", message = "Phone number must be 10 digits")
     private String phoneNumber;
     private List<Sample> samples;
+
+    @Override
+    public String toString() {
+        return "PatientDTO{" +
+                "patientID=" + patientID +
+                ", firstName='" + firstName + '\'' +
+                ", patientEmail='" + patientEmail + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", gender=" + gender +
+                ", address='" + address + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                '}';
+    }
 }
