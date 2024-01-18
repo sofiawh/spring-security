@@ -4446,3 +4446,61 @@ com.simplon.labxpert.exception.handler.CustomNotFoundException: The expiration d
 2024-01-18 12:48:32.694  INFO 10995 --- [Thread-58] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2024-01-18 12:48:32.702  INFO 10995 --- [Thread-58] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
 2024-01-18 12:48:48.072  WARN 10995 --- [restartedMain] o.s.boot.StartupInfoLogger               : InetAddress.getLocalHost().getHostName() took 5001 milliseconds to respond. Please verify your network configuration (macOS machines may need to add entries to /etc/hosts).
+2024-01-18 12:48:53.074  WARN 10995 --- [restartedMain] o.s.boot.system.ApplicationPid           : ManagementFactory.getRuntimeMXBean().getName() took 5002 milliseconds to respond. This may be due to slow host name resolution. Please verify your network configuration (macOS machines may need to add entries to /etc/hosts).
+2024-01-18 12:48:53.074  INFO 10995 --- [restartedMain] c.simplon.labxpert.LabXpertApplication   : Starting LabXpertApplication using Java 1.8.0_202 on MacBook-Pro-de-Ayoub.local with PID 10995 (/Users/ayoub/Documents/Simplon/LabXpert/LabXpert/target/classes started by ayoub in /Users/ayoub/Documents/Simplon/LabXpert/LabXpert)
+2024-01-18 12:48:53.075 DEBUG 10995 --- [restartedMain] c.simplon.labxpert.LabXpertApplication   : Running with Spring Boot v2.7.11, Spring v5.3.27
+2024-01-18 12:48:53.075  INFO 10995 --- [restartedMain] c.simplon.labxpert.LabXpertApplication   : The following 1 profile is active: "dev"
+2024-01-18 12:48:53.338  INFO 10995 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-01-18 12:48:53.386  INFO 10995 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 47 ms. Found 10 JPA repository interfaces.
+2024-01-18 12:48:53.505  INFO 10995 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9090 (http)
+2024-01-18 12:48:53.506  INFO 10995 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-01-18 12:48:53.506  INFO 10995 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.74]
+2024-01-18 12:48:53.519  INFO 10995 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-01-18 12:48:53.519  INFO 10995 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 438 ms
+2024-01-18 12:48:53.562  INFO 10995 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-01-18 12:48:53.567  INFO 10995 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2024-01-18 12:48:53.596  INFO 10995 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2024-01-18 12:48:53.597  INFO 10995 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2024-01-18 12:48:53.881  INFO 10995 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-01-18 12:48:53.881  INFO 10995 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-01-18 12:48:54.235  WARN 10995 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-01-18 12:48:54.290 DEBUG 10995 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-01-18 12:48:54.311 DEBUG 10995 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 23 mappings in 'requestMappingHandlerMapping'
+2024-01-18 12:48:54.322 DEBUG 10995 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2024-01-18 12:48:54.329 DEBUG 10995 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-01-18 12:48:54.531  INFO 10995 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-01-18 12:48:54.545  INFO 10995 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9090 (http) with context path ''
+2024-01-18 12:48:54.551  INFO 10995 --- [restartedMain] c.simplon.labxpert.LabXpertApplication   : Started LabXpertApplication in 21.541 seconds (JVM running for 704.054)
+2024-01-18 12:48:54.557  INFO 10995 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2024-01-18 12:48:55.956  INFO 10995 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (1 addition, 0 deletions, 0 modifications)
+2024-01-18 12:48:55.960  INFO 10995 --- [Thread-64] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-01-18 12:48:55.971  INFO 10995 --- [Thread-64] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-01-18 12:48:55.971  INFO 10995 --- [Thread-64] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2024-01-18 12:48:55.977  INFO 10995 --- [Thread-64] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+2024-01-18 12:49:11.230  WARN 10995 --- [restartedMain] o.s.boot.StartupInfoLogger               : InetAddress.getLocalHost().getHostName() took 5001 milliseconds to respond. Please verify your network configuration (macOS machines may need to add entries to /etc/hosts).
+2024-01-18 12:49:16.231  WARN 10995 --- [restartedMain] o.s.boot.system.ApplicationPid           : ManagementFactory.getRuntimeMXBean().getName() took 5001 milliseconds to respond. This may be due to slow host name resolution. Please verify your network configuration (macOS machines may need to add entries to /etc/hosts).
+2024-01-18 12:49:16.232  INFO 10995 --- [restartedMain] c.simplon.labxpert.LabXpertApplication   : Starting LabXpertApplication using Java 1.8.0_202 on MacBook-Pro-de-Ayoub.local with PID 10995 (/Users/ayoub/Documents/Simplon/LabXpert/LabXpert/target/classes started by ayoub in /Users/ayoub/Documents/Simplon/LabXpert/LabXpert)
+2024-01-18 12:49:16.232 DEBUG 10995 --- [restartedMain] c.simplon.labxpert.LabXpertApplication   : Running with Spring Boot v2.7.11, Spring v5.3.27
+2024-01-18 12:49:16.232  INFO 10995 --- [restartedMain] c.simplon.labxpert.LabXpertApplication   : The following 1 profile is active: "dev"
+2024-01-18 12:49:16.467  INFO 10995 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-01-18 12:49:16.511  INFO 10995 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 44 ms. Found 10 JPA repository interfaces.
+2024-01-18 12:49:16.607  INFO 10995 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9090 (http)
+2024-01-18 12:49:16.607  INFO 10995 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-01-18 12:49:16.608  INFO 10995 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.74]
+2024-01-18 12:49:16.634  INFO 10995 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-01-18 12:49:16.634  INFO 10995 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 399 ms
+2024-01-18 12:49:16.673  INFO 10995 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-01-18 12:49:16.677  INFO 10995 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2024-01-18 12:49:16.705  INFO 10995 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2024-01-18 12:49:16.705  INFO 10995 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2024-01-18 12:49:16.946  INFO 10995 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-01-18 12:49:16.946  INFO 10995 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-01-18 12:49:17.231  WARN 10995 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-01-18 12:49:17.275 DEBUG 10995 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-01-18 12:49:17.292 DEBUG 10995 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 23 mappings in 'requestMappingHandlerMapping'
+2024-01-18 12:49:17.301 DEBUG 10995 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2024-01-18 12:49:17.307 DEBUG 10995 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-01-18 12:49:17.485  INFO 10995 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-01-18 12:49:17.497  INFO 10995 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9090 (http) with context path ''
+2024-01-18 12:49:17.502  INFO 10995 --- [restartedMain] c.simplon.labxpert.LabXpertApplication   : Started LabXpertApplication in 21.314 seconds (JVM running for 727.004)
+2024-01-18 12:49:17.505  INFO 10995 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
