@@ -1,5 +1,7 @@
 package com.simplon.labxpert.model.dto;
 
+import com.simplon.labxpert.model.entity.Analysis;
+import com.simplon.labxpert.model.entity.User;
 import com.simplon.labxpert.model.enums.Priority;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,11 +20,11 @@ public class SchedulingDTO {
     @Positive(message = "schedulingID must be positive")
     private long schedulingID;
 
-    @NotBlank(message = "startDateAndTime must not be blank")
+    @NotNull(message = "startDateAndTime must not be null")
     @Future(message = "startDateAndTime must be in the future")
     private LocalDate startDateAndTime;
 
-    @NotBlank(message = "endDateAndTime must not be blank")
+    @NotNull(message = "endDateAndTime must not be null")
     @Future(message = "endDateAndTime must be in the future")
     private LocalDate endDateAndTime;
 
@@ -33,11 +35,9 @@ public class SchedulingDTO {
     @NotBlank(message = "notes must not be blank")
     private String notes;
 
-    @Positive(message = "userID must be positive")
-    @NotNull(message = "userID must not be null")
-    private long userID;
+    @NotNull(message = "user must not be null")
+    private User user;
 
-    @Positive(message = "analysisID must be positive")
-    @NotNull(message = "analysisID must not be null")
-    private long analysisId;
+    @NotNull(message = "analysis must not be null")
+    private Analysis analysis;
 }
