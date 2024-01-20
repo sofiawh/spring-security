@@ -16,7 +16,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
+/**
+ * Implementation of the User service.
+ * It contains the methods that the service will implement.
+ */
 @Service
 public class UserServiceImpl implements UserService {
     private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
@@ -31,7 +34,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO getUserById(long id){
+    public UserDTO getUserById(long id) {
         try {
             LOGGER.info("Fetching user with ID: {}", id);
             Optional<User> user = userRepository.findById(id);

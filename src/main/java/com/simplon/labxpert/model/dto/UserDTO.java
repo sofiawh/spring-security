@@ -11,7 +11,10 @@ import lombok.Setter;
 
 
 import javax.validation.constraints.*;
-
+/**
+ * DTO for the User entity.
+ * It contains all the attributes that a user can have.
+ */
 @Getter
 @Setter
 public class UserDTO {
@@ -21,29 +24,29 @@ public class UserDTO {
 
     @JsonView({Views.CreateUser.class, Views.UpdateUser.class})
     @Email
-    @NotBlank(message = "Email is mandatory")
+    @NotEmpty(message = "Email is mandatory")
     private String email;
 
     @JsonIgnore
     private Boolean isEmailVerified;
 
     @JsonView({Views.CreateUser.class, Views.UpdateUser.class})
-    @NotBlank(message = "Username is mandatory")
+    @NotEmpty(message = "Username is mandatory")
     @Size(min = 3, max = 20, message = "Username must be between 3 and 20 characters")
     private String username;
 
     @JsonProperty(access = Access.WRITE_ONLY)
     @JsonView({Views.CreateUser.class})
-    @NotBlank(message = "Password is mandatory")
+    @NotEmpty(message = "Password is mandatory")
     @Size(min = 8, message = "Password must be at least 8 characters")
     @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$", message = "Password must contain at least one digit, one lowercase, one uppercase and one special character")
     private String password;
 
     @JsonView({Views.CreateUser.class, Views.UpdateUser.class})
-    @NotNull(message = "User role is mandatory")
+    @NotEmpty(message = "User role is mandatory")
     private UserRole userRole;
 
     @JsonView({Views.CreateUser.class, Views.UpdateUser.class})
-    @NotBlank(message = "Personal info is mandatory")
+    @NotEmpty(message = "Personal info is mandatory")
     private String personalInfo;
 }

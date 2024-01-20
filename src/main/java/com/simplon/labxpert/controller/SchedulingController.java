@@ -28,7 +28,10 @@ public class SchedulingController {
     public SchedulingController(SchedulingService schedulingService){
         this.schedulingService = schedulingService;
     }
-
+    /**
+     * This method allows to get all schedulings.
+     * @return a list of all schedulings.
+     */
     @GetMapping
     public ResponseEntity<List<SchedulingDTO>> getALlSchedulings(){
         LOGGER.info("Fetching all schedulings Controller");
@@ -36,6 +39,11 @@ public class SchedulingController {
         return new ResponseEntity<>(schedulingDTOS, HttpStatus.OK);
     }
 
+    /**
+     * This method allows to get a scheduling by id.
+     * @param id the id of the scheduling to get.
+     * @return a scheduling.
+     */
     @GetMapping("/{id}")
     public ResponseEntity<SchedulingDTO> getSchedulingById(@PathVariable long id){
         LOGGER.info("Fetching Scheduling by id Controller");

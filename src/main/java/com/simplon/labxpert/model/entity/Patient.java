@@ -1,5 +1,6 @@
 package com.simplon.labxpert.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.simplon.labxpert.model.enums.Gender;
 import lombok.*;
 
@@ -40,9 +41,10 @@ public class Patient {
     private String address;
     @Column(name = "phoneNumber")
     private String phoneNumber;
-    @OneToMany(mappedBy = "patient")
+    // TODO : TO @Ayoub ait si ahmad CORRECT THAT SHOULD RETURN THE LIST OF SAMPLES DEPENDING ON THE CONTEXT
+    // TODO : TO @Ayoub ait si ahmad CORRECT ALSO THE FETCH TYPE AND THE CASCADE TYPE AND THE DELETE TYPE
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Sample> samples;
-
-    //TODO adding the historique of analysis
-
+    //TODO :TO @chaimaa mahy ADD THE HISTORY OF THE ANALYSIS
 }

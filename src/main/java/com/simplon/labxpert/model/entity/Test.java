@@ -32,6 +32,7 @@ public class Test {
     private double minValue;
     @Column(name = "measurementUnits")
     private String measurementUnits;
+
     @OneToMany(mappedBy = "test")
     private List<TestResult> testResult;
 

@@ -1,10 +1,13 @@
 package com.simplon.labxpert.service.impl;
 
 import com.simplon.labxpert.exception.handler.CustomNotFoundException;
+import com.simplon.labxpert.mapper.GlobalMapper;
 import com.simplon.labxpert.mapper.SampleMapper;
+import com.simplon.labxpert.model.dto.PatientDTO;
 import com.simplon.labxpert.model.dto.SampleDTO;
 import com.simplon.labxpert.model.entity.Patient;
 import com.simplon.labxpert.model.entity.Sample;
+import com.simplon.labxpert.model.enums.SampleStatus;
 import com.simplon.labxpert.repository.PatientRepository;
 import com.simplon.labxpert.repository.SampleRepository;
 import com.simplon.labxpert.service.SampleService;
@@ -19,16 +22,19 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
+/**
+ * Implementation of the Sample service.
+ * It contains the methods that the service will implement.
+ */
 @Service
 public class SampleServiceImpl implements SampleService {
 
-    private SampleMapper sampleMapper;
-    private SampleRepository sampleRepository;
-    private PatientRepository patientRepository;
+    private final SampleMapper sampleMapper;
+    private final SampleRepository sampleRepository;
+    private final PatientRepository patientRepository;
 
     @Autowired
-    private SampleServiceImpl(SampleMapper sampleMapper, SampleRepository sampleRepository) {
+    private SampleServiceImpl(SampleMapper sampleMapper, SampleRepository sampleRepository, PatientRepository patientRepository) {
         this.sampleMapper = sampleMapper;
         this.sampleRepository = sampleRepository;
         this.patientRepository = patientRepository;
@@ -37,23 +43,21 @@ public class SampleServiceImpl implements SampleService {
     @Override
     public List<SampleDTO> getAllSimple() {
         List<Sample> samples = sampleRepository.findAll();
-        return samples.stream()
-                .map(sampleMapper::toDTO)
-                .collect(Collectors.toList());
+        return samples.stream().map(sampleMapper::toDTO).collect(Collectors.toList());
     }
 
     @Override
     public SampleDTO createSample(SampleDTO sampleDTO) {
-        //TODO i have  to find a Patient by this id :patientRepository.findByID(sampleDTO.getPatient().getPatientID())
-        //TODO and also when adding it i have to add the  existing Patient to the sample
+        Sample sample = sampleMapper.toEntity(sampleDTO);
         Optional<Patient> optionalPatient = patientRepository.findById(sampleDTO.getPatientDTO().getPatientID());
         if (!optionalPatient.isPresent()) {
             throw new CustomNotFoundException("Patient not found", HttpStatus.BAD_REQUEST);
         }
-        Sample sample = sampleMapper.toEntity(sampleDTO);
         sample.setPatient(optionalPatient.get());
+        sample.setSampleStatus(SampleStatus.PENDING);
         Sample savedSample = sampleRepository.save(sample);
-        return sampleMapper.toDTO(savedSample);
+        SampleDTO savedSampleDTO = sampleMapper.toDTO(savedSample);
+        return savedSampleDTO;
     }
 
     @Override
@@ -68,6 +72,11 @@ public class SampleServiceImpl implements SampleService {
     }
 
     @Override
+    public SampleDTO updateSample(SampleDTO sampleDTO) {
+        return null;
+    }
+
+    @Override
     public void deleteSample(long sampleId) {
         Optional<Sample> optionalSample = sampleRepository.findById(sampleId);
         if (!optionalSample.isPresent()) {
@@ -76,6 +85,4 @@ public class SampleServiceImpl implements SampleService {
         sampleRepository.deleteById(sampleId);
 
     }
-
-
 }

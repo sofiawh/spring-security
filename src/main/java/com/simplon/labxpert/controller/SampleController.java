@@ -25,6 +25,9 @@ public class SampleController {
         this.sampleService = sampleService;
     }
 
+    // TODO : To @chaimaa mahy PLASE DON'T MAKE THE TRY CATCH IN THE CONTROLLER FOR THE ALL ENDPOINTS IN THE APPLICATION I WILL FIX IT ME @ayoub ait si ahmad
+    // BECAUSE THE CONTROLLER IS ONLY IS THE ROUTER OF THE APPLICATION
+    // THE TRY CATCH MUST BE IN THE SERVICE LAYER AND THANK YOU
     @GetMapping
     public ResponseEntity<List<SampleDTO>> getAllSamples() {
         try {
@@ -37,11 +40,10 @@ public class SampleController {
         }
     }
 
+    // TODO : To @ayoub ait si ahmad ADD LOGS
     @PostMapping
     public ResponseEntity<SampleDTO> createSample(@Valid @RequestBody SampleDTO sampleDTO) {
-        LOGGER.info("the sampleDTO" + sampleDTO);
         SampleDTO createdSample = sampleService.createSample(sampleDTO);
-        LOGGER.info("sample added successfully");
         return new ResponseEntity<>(createdSample, HttpStatus.OK);
     }
 

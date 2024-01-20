@@ -16,7 +16,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
+/**
+ * Implementation of the scheduling service.
+ * It contains the methods that the service will implement.
+ */
 @Service
 public class SchedulingServiceImpl implements SchedulingService {
     private final static String SCHEDULING_NOT_FOUND = "Scheduling not found with id: ";
