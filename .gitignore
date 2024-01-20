@@ -34,5 +34,4 @@ build/
 
 /.idea/*
 /logs/*
-logs/*
-*.log
+/.mvn/*
