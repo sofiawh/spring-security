@@ -25,6 +25,7 @@ public class SampleController {
         this.sampleService = sampleService;
     }
 
+
     @GetMapping
     public ResponseEntity<List<SampleDTO>> getAllSamples() {
         try {
