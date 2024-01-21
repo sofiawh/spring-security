@@ -103,6 +103,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <!-- TODO : TO @chaimma mahy PLEASE EXPLAIN WHY YOU ADD THIS CONFIGURATION BELOW -->
                 <configuration>
                     <image>
                         <builder>paketobuildpacks/builder-jammy-base:latest</builder>
@@ -146,5 +147,4 @@
             </plugin>
         </plugins>
     </reporting>
-
 </project>
