@@ -4,7 +4,10 @@ import com.simplon.labxpert.model.dto.ReagentDTO;
 import com.simplon.labxpert.model.enums.ReagentStatus;
 
 import java.util.List;
-
+/**
+ * Interface for the Reagent service.
+ * It contains the methods that the service will implement.
+ */
 public interface ReagentService {
     List<ReagentDTO> getAllReagents();
     List<ReagentDTO> getAllReagentsByStatus(ReagentStatus status);

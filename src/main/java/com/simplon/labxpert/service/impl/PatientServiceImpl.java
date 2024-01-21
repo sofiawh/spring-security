@@ -15,7 +15,10 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
+/**
+ * Implementation of the Patient service.
+ * It contains the methods that the service will implement.
+ */
 @Service
 public class PatientServiceImpl implements PatientService {
     private PatientRepository patientRepository;

@@ -20,7 +20,6 @@ import java.util.NoSuchElementException;
  *
  * @author Chaimaa MAHY
  */
-
 @RestController
 @RequestMapping("/api/v1/patients")
 public class PatientController {

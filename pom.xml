@@ -57,11 +57,13 @@
             <scope>test</scope>
         </dependency>
         <!-- Mapstruct -->
+
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
             <version>${org.mapstruct.version}</version>
         </dependency>
+        <!--
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct-processor</artifactId>
@@ -72,6 +74,7 @@
             <artifactId>lombok-mapstruct-binding</artifactId>
             <version>0.1.0</version>
         </dependency>
+        -->
         <!-- Validation -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -92,7 +95,7 @@
         <dependency>
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <version>7.0.2.Final</version> <!-- Replace with the latest version -->
+            <version>6.1.5.Final</version>
         </dependency>
     </dependencies>
     <build>
@@ -100,20 +103,12 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <!-- TODO : TO @chaimma mahy PLEASE EXPLAIN WHY YOU ADD THIS CONFIGURATION BELOW -->
                 <configuration>
                     <image>
                         <builder>paketobuildpacks/builder-jammy-base:latest</builder>
                     </image>
                 </configuration>
-            </plugin>
-        </plugins>
-    </build>
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>2.22.0</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -128,10 +123,28 @@
                             <artifactId>mapstruct-processor</artifactId>
                             <version>${org.mapstruct.version}</version>
                         </path>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>1.18.20</version>
+                        </path>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok-mapstruct-binding</artifactId>
+                            <version>0.2.0</version>
+                        </path>
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
         </plugins>
+    </build>
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>2.22.0</version>
+            </plugin>
+        </plugins>
     </reporting>
-
 </project>

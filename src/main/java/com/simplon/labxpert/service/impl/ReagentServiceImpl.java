@@ -20,7 +20,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
+/**
+ * Implementation of the Reagent service.
+ * It contains the methods that the service will implement.
+ */
 @Service
 public class ReagentServiceImpl implements ReagentService {
     private final static String REAGENG_NOT_FOUND = "Reagent not found with id: ";
@@ -52,7 +55,7 @@ public class ReagentServiceImpl implements ReagentService {
     public List<ReagentDTO> getAllReagentsByStatus(ReagentStatus status) {
         try {
             LOGGER.info("Fetching regents with this status: {}", status);
-            // TODO: check if the status is valid
+            // TODO: TO @Ayoub ait si ahmad CHECK IF THE STATUS IS NULL OR NOT
             List<Reagent> reagentList = reagentRepository.findAllByReagentStatus(status);
             return reagentList.stream().map(reagentMappper::toDTO).collect(Collectors.toList());
         } catch (Exception exception) {

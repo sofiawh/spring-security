@@ -13,7 +13,10 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.time.LocalDate;
-
+/**
+ * DTO for the Scheduling entity.
+ * It contains all the fields that a scheduling can have.
+ */
 @Getter
 @Setter
 public class SchedulingDTO {

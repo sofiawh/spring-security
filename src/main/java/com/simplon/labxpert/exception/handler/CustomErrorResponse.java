@@ -6,6 +6,10 @@ import org.springframework.http.HttpStatus;
 
 import java.nio.file.Path;
 import java.time.LocalDateTime;
+/**
+ * This class is used to create a custom error response.
+ * It contains the timestamp, the status and the error message.
+ */
 @Getter
 @Setter
 public class CustomErrorResponse {

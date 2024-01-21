@@ -17,10 +17,10 @@ import java.util.Map;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
-
+    // TODO : TO @ayoub ait si ahmad MAKE A MEANING PACKAGE FOR THIS CLASS
+    // TODO : TO @ayoub ait si ahmad ADD JAVA DOC
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Object> handleValidationExceptions(
-            MethodArgumentNotValidException ex, WebRequest request) {
+    public ResponseEntity<Object> handleValidationExceptions(MethodArgumentNotValidException ex, WebRequest request) {
         Map<String, String> errors = new HashMap<>();
         ex.getBindingResult().getAllErrors().forEach((error) -> {
             String fieldName = ((FieldError) error).getField();
@@ -47,13 +47,20 @@ public class GlobalExceptionHandler {
         errors.setStatus(HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
+
+    // TODO : TO @chaimaa mahy THIS GLOBAL EXCEPTION HANDLER IS NOT WORKING
+    // TODO : TO @chaimaa mahy CHECK IF THIS IS THE RIGHT WAY TO HANDLE THE EXCEPTIONS I SUGESTE TO READ THIS ARTICLE: https://dev.to/tienbku/global-exception-handler-in-spring-boot-3mbp
+    // TODO : TO @chaimaa mahy ADD JAVA DOC
+    /*
     @ExceptionHandler(ResponseStatusException.class)
-    public ResponseEntity<CustomErrorResponse> handleResourceNotFoundException(ResponseStatusException ex){
+    public ResponseEntity<CustomErrorResponse> handleResourceNotFoundException(ResponseStatusException ex) {
         CustomErrorResponse errors = new CustomErrorResponse();
         errors.setStatus(HttpStatus.NOT_FOUND);
         errors.setError(ex.getReason());
         errors.setTimestamp(LocalDateTime.now());
-        return new ResponseEntity<>(errors,HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(errors, HttpStatus.NOT_FOUND);
 
     }
+
+     */
 }

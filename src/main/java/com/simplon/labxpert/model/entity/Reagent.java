@@ -35,13 +35,14 @@ public class Reagent {
     @Column(name = "reagentDescription")
     private String reagentDescription;
     @Column(name = "quantityInStock")
-    private int quantityInStock = 0;
+    private int quantityInStock;
     @Column(name = "expirationDate")
     private LocalDateTime expirationDate;
     @Enumerated(EnumType.STRING)
     private ReagentStatus reagentStatus;
     @Column(name = "supplier")
     private String supplier;
+    // TODO : TO @Ayoub ait si ahmad CORRECT ALSO THE FETCH TYPE AND THE CASCADE TYPE AND THE DELETE TYPE
     @OneToMany(mappedBy = "reagent")
     private List<AnalysisReagent> analysisReagents;
 }

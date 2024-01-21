@@ -8,10 +8,14 @@ import lombok.Setter;
 import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.util.List;
-
+/**
+ * DTO for the Patient entity.
+ * It contains all the fields that a patient can have.
+ */
 @Getter
 @Setter
 public class PatientDTO {
+    // TODO : TO @ayoub ait si ahmad CHECK IF THE VALIDATION WORKS AS EXPECTED
     @Positive
     private long patientID;
     @NotBlank(message = "First name is required")
@@ -29,19 +33,9 @@ public class PatientDTO {
     private String address;
     @Pattern(regexp = "\\d{10}", message = "Phone number must be 10 digits")
     private String phoneNumber;
-    private List<Sample> samples;
-
-    @Override
-    public String toString() {
-        return "PatientDTO{" +
-                "patientID=" + patientID +
-                ", firstName='" + firstName + '\'' +
-                ", patientEmail='" + patientEmail + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
-                ", gender=" + gender +
-                ", address='" + address + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                '}';
-    }
+    /*
+     * TODO : TO @ayoub ait si ahmad MAKE A JSON VIEW FOR THIS DEPENDING ON THE USE CASE
+     * beacause this can cause a mapping error
+     * private List<Sample> samples;
+     */
 }
