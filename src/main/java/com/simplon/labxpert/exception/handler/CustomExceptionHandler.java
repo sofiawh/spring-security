@@ -6,6 +6,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.time.LocalDateTime;
 
+/**
+ * This class is used to handle the custom exceptions.
+ * It contains the method handleCustomNotFoundException.
+ */
 @ControllerAdvice
 public class CustomExceptionHandler {
 

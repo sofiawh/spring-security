@@ -10,7 +10,10 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 import javax.validation.constraints.Positive;
-
+/**
+ * DTO for the TestResult entity.
+ * It contains all the fields that a testResult can have.
+ */
 @Getter
 @Setter
 public class TestResultDTO {
@@ -25,5 +28,4 @@ public class TestResultDTO {
     private Test test;
     @NotNull(message = "analysis is mandatory")
     private Analysis analysis;
-
 }

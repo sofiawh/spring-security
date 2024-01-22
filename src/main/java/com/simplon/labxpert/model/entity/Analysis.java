@@ -39,7 +39,7 @@ public class Analysis {
     private AnalysisStatus analysisStatus ;
     @Enumerated(EnumType.STRING)
     private ResultStatus resultStatus;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "sample_id")
     private Sample sample;
     @OneToMany(mappedBy = "analysis")

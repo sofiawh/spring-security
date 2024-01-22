@@ -8,7 +8,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 /**
  * Main class of the application.
  * @EnableScheduling is used to enable the scheduling of the tasks like the check of the expiration date of the reagents.
- * @Author Ayoub Ait Si Ahmad and Chaimaa Mahy
+ * @ComponentScan is used to scan the packages of the application.
+ * @EnableSwagger2 is used to enable the Swagger documentation.
+ * @Author Chaimaa Mahy and Ayoub Ait Si Ahmad
  */
 
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
@@ -18,9 +20,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @ComponentScan(basePackages = {"com.simplon.labxpert", "com.simplon.labxpert.config"})
 public class LabXpertApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(LabXpertApplication.class, args);
     }
-
 }

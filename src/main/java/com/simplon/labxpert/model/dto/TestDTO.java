@@ -6,6 +6,10 @@ import lombok.Setter;
 
 import java.util.List;
 
+/**
+ * DTO for the Test entity.
+ * It contains all the fields that a test can have.
+ */
 @Getter
 @Setter
 public class TestDTO {
@@ -15,5 +19,4 @@ public class TestDTO {
     private double maxValue;
     private double minValue;
     private String measurementUnits;
-    private List<TestResult> testResult;
 }

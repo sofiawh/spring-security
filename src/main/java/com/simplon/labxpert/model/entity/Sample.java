@@ -41,6 +41,6 @@ public class Sample {
     private Patient patient;
     // TODO : TO @Ayoub ait si ahmad CORRECT THAT SHOULD RETURN THE LIST OF SAMPLES DEPENDING ON THE CONTEXT
     // TODO : TO @Ayoub ait si ahmad CORRECT ALSO THE FETCH TYPE AND THE CASCADE TYPE AND THE DELETE TYPE
-    @OneToMany(mappedBy = "sample")
-    private List<Analysis> analyses;
+    @OneToOne(mappedBy = "sample", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private Analysis analyses;
 }
