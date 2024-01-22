@@ -41,7 +41,7 @@ public class UserDTO {
     @Size(min = 8, message = "Password must be at least 8 characters")
     @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$", message = "Password must contain at least one digit, one lowercase, one uppercase and one special character")
     private String password;
-
+    @NotNull(message = "User role is mandatory")
     @JsonView({Views.CreateUser.class, Views.UpdateUser.class})
     private UserRole userRole;
 

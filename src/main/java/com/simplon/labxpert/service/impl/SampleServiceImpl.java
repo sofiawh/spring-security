@@ -70,19 +70,32 @@ public class SampleServiceImpl implements SampleService {
             throw new CustomNotFoundException("Sample not found", HttpStatus.NOT_FOUND);
         }
     }
-
-    @Override
-    public SampleDTO updateSample(SampleDTO sampleDTO) {
-        return null;
-    }
+    // TODO : To @ayoub ait si ahmad IF I HAVE MORE TIME APPLIE THIS METHOD
+//    @Override
+//    public SampleDTO updateSample(long sampleId,SampleDTO sampleDTO) {
+//        Sample sample = sampleMapper.toEntity(sampleDTO);
+//        Optional<Sample> optionalSample = sampleRepository.findById(sampleId);
+//        if (!optionalSample.isPresent()) {
+//            throw new CustomNotFoundException("Sample not found with the id : {}" + sampleId, HttpStatus.NOT_FOUND);
+//        }
+//        Optional<Patient> optionalPatient = patientRepository.findById(sampleDTO.getPatientDTO().getPatientID());
+//        if (!optionalPatient.isPresent()) {
+//            throw new CustomNotFoundException("Patient not found", HttpStatus.BAD_REQUEST);
+//        }
+//        optionalSample.get().setPatient(optionalPatient.get());
+//        optionalSample.get().setSampleDescription(sample.getSampleDescription());
+//        optionalSample.get().setAnalysisType(sample.getAnalysisType());
+//        optionalSample.get().setCollectionDate(sample.getCollectionDate());
+//
+//        return null;
+//    }
 
     @Override
     public void deleteSample(long sampleId) {
         Optional<Sample> optionalSample = sampleRepository.findById(sampleId);
         if (!optionalSample.isPresent()) {
-            throw new EntityNotFoundException("Sample not found with ID: " + sampleId);
+            throw new CustomNotFoundException("Sample not found with ID: " + sampleId, HttpStatus.NOT_FOUND);
         }
         sampleRepository.deleteById(sampleId);
-
     }
 }

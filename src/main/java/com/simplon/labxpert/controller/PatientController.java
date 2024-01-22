@@ -25,8 +25,9 @@ import java.util.NoSuchElementException;
 public class PatientController {
     private static final Logger LOGGER = LoggerFactory.getLogger(PatientController.class);
     private PatientService patientService;
+
     @Autowired
-    public PatientController(PatientService patientService){
+    public PatientController(PatientService patientService) {
         this.patientService = patientService;
     }
 
@@ -40,18 +41,13 @@ public class PatientController {
      * If an exception occurs during the operation, it responds with an HTTP status INTERNAL_SERVER_ERROR (500).</p>
      *
      * @return A {@code ResponseEntity<List<PatientDTO>>} containing a list of {@code PatientDTO} objects.
-     *         The HTTP status is OK (200) if the operation is successful, INTERNAL_SERVER_ERROR (500) otherwise.
+     * The HTTP status is OK (200) if the operation is successful, INTERNAL_SERVER_ERROR (500) otherwise.
      */
     @GetMapping
     public ResponseEntity<List<PatientDTO>> getAllPatients() {
-        try {
-            LOGGER.info("Fetching all patients");
-            List<PatientDTO> patientsDTOS = patientService.getAllPatients();
-            return new ResponseEntity<>(patientsDTOS, HttpStatus.OK);
-        } catch (Exception e) {
-            LOGGER.error("cannot get all patients an error has occurred ");
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-        }
+        LOGGER.info("Fetching all patients");
+        List<PatientDTO> patientsDTOS = patientService.getAllPatients();
+        return new ResponseEntity<>(patientsDTOS, HttpStatus.OK);
     }
 
     /**
@@ -63,26 +59,20 @@ public class PatientController {
      * <p>If the operation is successful, it responds with an HTTP status OK (200) and the created patient.
      * If there is a conflict (e.g., duplicate patient information) it responds with an HTTP status CONFLICT(409).
      * If an exception occurs during the operation, it responds with an HTTP status INTERNAL_SERVER_ERROR (500).</p>
+     *
      * @param patientDTO A {@code PatientDTO} object representing the patient's details. It is expected in the request body.
      * @return A {@code ResponseEntity<PatientDTO>} containing a {@code PatientDTO} object.
-     *         The HTTP status is OK (200) if the operation is successful. if there is a conflict  (e.g., duplicate patient information) it responds with an HTTP status CONFLICT(409).
-     *         otherwise it responds with an HTTP status INTERNAL_SERVER_ERROR (500) .
+     * The HTTP status is OK (200) if the operation is successful. if there is a conflict  (e.g., duplicate patient information) it responds with an HTTP status CONFLICT(409).
+     * otherwise it responds with an HTTP status INTERNAL_SERVER_ERROR (500) .
      */
 
     @PostMapping
     public ResponseEntity<PatientDTO> createPatient(@Valid @RequestBody PatientDTO patientDTO) {
-        try {
-                PatientDTO createdPatient = patientService.createPatient(patientDTO);
-               LOGGER.info("Patient created successfully");
-                return new ResponseEntity<>(createdPatient, HttpStatus.OK);
-        }catch (DataIntegrityViolationException e) {
-                 LOGGER.error("Email of this patient already exist");
-                return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
-        } catch (Exception e) {
-                LOGGER.error("cannot add this Patient");
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-        }
+        PatientDTO createdPatient = patientService.createPatient(patientDTO);
+        LOGGER.info("Patient created successfully");
+        return new ResponseEntity<>(createdPatient, HttpStatus.OK);
     }
+
 
     /**
      * Retrieves a Patient by his id  from the system.
@@ -91,30 +81,21 @@ public class PatientController {
      * It returns a {@code ResponseEntity<PatientDTO>} containing a {@code PatientDTO} object.</p>
      *
      * @param patientId A {@code patientId} object representing the patient's id. It is expected in the path variable.
-     * <p>If the operation is successful, it responds with an HTTP status OK (200) and the patient retrieved.
-     * If there it patient with the patient id don't exist with an HTTP status NOT_FOUND(404).
-     * If an exception occurs during the operation, it responds with an HTTP status INTERNAL_SERVER_ERROR (500).</p>
-     *
+     *                  <p>If the operation is successful, it responds with an HTTP status OK (200) and the patient retrieved.
+     *                  If there it patient with the patient id don't exist with an HTTP status NOT_FOUND(404).
+     *                  If an exception occurs during the operation, it responds with an HTTP status INTERNAL_SERVER_ERROR (500).</p>
      * @return A {@code ResponseEntity<PatientDTO>} containing a {@code PatientDTO} object.
-     *         The HTTP status is OK (200) if the operation is successful. If the patient with the patientId doesn't exist return respond  with an HTTP status NOT_FOUND(404).
-     *         otherwise if there is an exception it responds with an HTTP status INTERNAL_SERVER_ERROR (500) .
+     * The HTTP status is OK (200) if the operation is successful. If the patient with the patientId doesn't exist return respond  with an HTTP status NOT_FOUND(404).
+     * otherwise if there is an exception it responds with an HTTP status INTERNAL_SERVER_ERROR (500) .
      */
 
     @GetMapping("/{patientId}")
-    public  ResponseEntity<PatientDTO> getPatientByID( @PathVariable long patientId ){
-        try {
-            PatientDTO patient = patientService.getPatientById(patientId);
-            LOGGER.info("patient has been fetched successfully ");
-            return new ResponseEntity<>(patient, HttpStatus.OK);
-        } catch (NoSuchElementException e) {
-            LOGGER.error("patient not found");
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        } catch (Exception e) {
-            LOGGER.error("a problem has occurred");
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-        }
-
+    public ResponseEntity<PatientDTO> getPatientByID(@PathVariable long patientId) {
+        PatientDTO patient = patientService.getPatientById(patientId);
+        LOGGER.info("patient has been fetched successfully ");
+        return new ResponseEntity<>(patient, HttpStatus.OK);
     }
+
     /**
      * Update a Patient already existing in the system.
      *
@@ -122,29 +103,21 @@ public class PatientController {
      * It returns a {@code ResponseEntity<PatientDTO>} containing a {@code PatientDTO} of the updated object.</p>
      *
      * @param patientId A {@code patientId} object representing the patient's id. It is expected in the path variable.
-     * @param patient A {@code patient} object representing the patientDTO. It is expected in the body.
-     * <p>If the operation is successful, it responds with an HTTP status OK (200) and the patient updated.
-     * If there is no patient with the patientId return HTTP status NOT_FOUND(404).
-     * If an exception occurs during the operation, it responds with an HTTP status INTERNAL_SERVER_ERROR (500).</p>
-     *
+     * @param patient   A {@code patient} object representing the patientDTO. It is expected in the body.
+     *                  <p>If the operation is successful, it responds with an HTTP status OK (200) and the patient updated.
+     *                  If there is no patient with the patientId return HTTP status NOT_FOUND(404).
+     *                  If an exception occurs during the operation, it responds with an HTTP status INTERNAL_SERVER_ERROR (500).</p>
      * @return A {@code ResponseEntity<PatientDTO>} containing a {@code PatientDTO} of the updated object.
-     *         The HTTP status is OK (200) if the operation is successful. If the patient with the patientId doesn't exist return respond  with an HTTP status NOT_FOUND(404).
-     *         otherwise if there is other exception it responds with an HTTP status INTERNAL_SERVER_ERROR (500) .
+     * The HTTP status is OK (200) if the operation is successful. If the patient with the patientId doesn't exist return respond  with an HTTP status NOT_FOUND(404).
+     * otherwise if there is other exception it responds with an HTTP status INTERNAL_SERVER_ERROR (500) .
      */
     @PutMapping("/{patientId}")
-    public ResponseEntity<PatientDTO> updatePatient( @PathVariable long patientId,@Valid @RequestBody PatientDTO patient){
-        try {
-            PatientDTO updatedPatient = patientService.updatePatient(patientId,patient);
-            LOGGER.info("patient has been updated successfully ");
-            return new ResponseEntity<>(updatedPatient, HttpStatus.OK);
-        } catch (NoSuchElementException e) {
-            LOGGER.error("patient not found");
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        } catch (Exception e) {
-            LOGGER.error("encountering a problem");
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-        }
+    public ResponseEntity<PatientDTO> updatePatient(@PathVariable long patientId, @Valid @RequestBody PatientDTO patient) {
+        PatientDTO updatedPatient = patientService.updatePatient(patientId, patient);
+        LOGGER.info("patient has been updated successfully ");
+        return new ResponseEntity<>(updatedPatient, HttpStatus.OK);
     }
+
     /**
      * Remove a Patient from  the system.
      *
@@ -152,25 +125,18 @@ public class PatientController {
      * It returns void.</p>
      *
      * @param patientId A {@code patientId} object representing the patient's id. It is expected in the path variable.
-     * <p>If the operation is successful, it return with an HTTP status OK (200).
-     * If there it patient with the patient id don't exist with an HTTP status NOT_FOUND(404).
-     * If an other exception occurs during the operation, it responds with an HTTP status INTERNAL_SERVER_ERROR (500).</p>
+     *                  <p>If the operation is successful, it return with an HTTP status OK (200).
+     *                  If there it patient with the patient id don't exist with an HTTP status NOT_FOUND(404).
+     *                  If an other exception occurs during the operation, it responds with an HTTP status INTERNAL_SERVER_ERROR (500).</p>
      */
 
     @DeleteMapping("/{patientId}")
-    public ResponseEntity<Void> deletePatient( @PathVariable long patientId){
-        try {
-            patientService.deletePatient(patientId);
-            LOGGER.info("patient has been deleted successfully ");
-            return ResponseEntity.noContent().build();
-        }catch (NoSuchElementException e) {
-            LOGGER.error("patient not found");
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-            } catch (Exception e) {
-            LOGGER.error("a problem has occurred");
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-            }
+    public ResponseEntity<String> deletePatient(@PathVariable long patientId) {
+        patientService.deletePatient(patientId);
+        LOGGER.info("patient has been deleted successfully ");
+        return new ResponseEntity<>("patient has been deleted successfully ", HttpStatus.OK);
     }
+
     /**
      * Retrieves a Patient by his email  from the system.
      *
@@ -178,29 +144,18 @@ public class PatientController {
      * It returns a {@code ResponseEntity<PatientDTO>} containing a {@code PatientDTO} object.</p>
      *
      * @param email A {@code patientId} object representing the patient's Email. It is expected in the request Parameter.
-     * <p>If the operation is successful, it return with an HTTP status OK (200) and the patient retrieved.
-     * If there is no patient with the patient email respond HTTP status NOT_FOUND(404).
-     * If an exception occurs during the operation, it responds with an HTTP status INTERNAL_SERVER_ERROR (500).</p>
-     *
+     *              <p>If the operation is successful, it return with an HTTP status OK (200) and the patient retrieved.
+     *              If there is no patient with the patient email respond HTTP status NOT_FOUND(404).
+     *              If an exception occurs during the operation, it responds with an HTTP status INTERNAL_SERVER_ERROR (500).</p>
      * @return A {@code ResponseEntity<PatientDTO>} containing a {@code PatientDTO} object.
-     *         The HTTP status is OK (200) if the operation is successful. If the patient with the patientId doesn't exist return respond  with an HTTP status NOT_FOUND(404).
-     *         otherwise if there is an exception it responds with an HTTP status INTERNAL_SERVER_ERROR (500) .
+     * The HTTP status is OK (200) if the operation is successful. If the patient with the patientId doesn't exist return respond  with an HTTP status NOT_FOUND(404).
+     * otherwise if there is an exception it responds with an HTTP status INTERNAL_SERVER_ERROR (500) .
      */
     @GetMapping("/byEmail")
-    public ResponseEntity<PatientDTO>  getPatientByEmail(@RequestParam String email){
-        try {
-            PatientDTO patient = patientService.getPatientByEmail(email);
-            LOGGER.info("patient fetched successfully ");
-            return new ResponseEntity<>(patient , HttpStatus.OK);
-        }catch (IllegalArgumentException e){
-            LOGGER.error("there is no patient with that email");
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        }catch(Exception e){
-            LOGGER.error("a problem had occurred when fetching this patient");
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-        }
-
-
+    public ResponseEntity<PatientDTO> getPatientByEmail(@RequestParam String email) {
+        PatientDTO patient = patientService.getPatientByEmail(email);
+        LOGGER.info("patient fetched successfully ");
+        return new ResponseEntity<>(patient, HttpStatus.OK);
     }
 
 }

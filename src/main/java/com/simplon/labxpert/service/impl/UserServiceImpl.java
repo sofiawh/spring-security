@@ -138,6 +138,11 @@ public class UserServiceImpl implements UserService {
             validateUser(user, id);
             User existingUser = existingUserOptional.get();
             existingUser.setUserID(id);
+            existingUser.setEmail(user.getEmail());
+            existingUser.setUsername(user.getUsername());
+            existingUser.setPassword(user.getPassword());
+            existingUser.setUserRole(user.getUserRole());
+            existingUser.setPersonalInfo(user.getPersonalInfo());
             userRepository.save(existingUser);
             return userMapper.toDTO(existingUser);
         } catch (Exception e) {

@@ -20,7 +20,7 @@ import java.util.List;
 @Getter
 @Setter
 public class SampleDTO {
-    @Positive
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private long sampleID;
 
     @NotNull(message = "Analysis type cannot be null")
