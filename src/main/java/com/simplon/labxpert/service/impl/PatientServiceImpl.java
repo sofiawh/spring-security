@@ -1,5 +1,6 @@
 package com.simplon.labxpert.service.impl;
 
+import com.simplon.labxpert.exception.handler.CustomNotFoundException;
 import com.simplon.labxpert.mapper.PatientMapper;
 import com.simplon.labxpert.model.dto.PatientDTO;
 import com.simplon.labxpert.model.entity.Patient;
@@ -7,6 +8,7 @@ import com.simplon.labxpert.repository.PatientRepository;
 import com.simplon.labxpert.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -15,6 +17,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
 /**
  * Implementation of the Patient service.
  * It contains the methods that the service will implement.
@@ -43,52 +46,62 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public List<PatientDTO> getAllPatients() {
-       List<Patient> patients= patientRepository.findAll();
-       return  patients.stream().map(patientMapper ::toDTO).collect(Collectors.toList());
+        List<Patient> patients = patientRepository.findAll();
+        return patients.stream().map(patientMapper::toDTO).collect(Collectors.toList());
     }
 
     @Override
     public PatientDTO createPatient(PatientDTO patientDTO) {
         Patient patient = patientMapper.toEntity(patientDTO);
         Optional<Patient> optionalPatient = patientRepository.findByPatientEmail(patient.getPatientEmail());
-        if (optionalPatient.isPresent()){
-            throw new DataIntegrityViolationException("patient with that email"+ patient.getPatientEmail() + "already exist ");
+        if (optionalPatient.isPresent()) {
+            throw new DataIntegrityViolationException("patient with that email" + patient.getPatientEmail() + "already exist ");
         }
         Patient savedPatient = patientRepository.save(patient);
         return patientMapper.toDTO(savedPatient);
     }
 
     @Override
-    public PatientDTO updatePatient(long patientId,PatientDTO patientDTO) {
-        Patient existingPatient = patientRepository.findById(patientId).orElseThrow(()-> new NoSuchElementException("Patient not found with ID: " + patientId));
-        existingPatient.setFirstName(patientDTO.getFirstName());
-        existingPatient.setLastName(patientDTO.getLastName());
-        Optional<Patient> optionalPatient = patientRepository.findByPatientEmail(patientDTO.getPatientEmail());
-        if (optionalPatient.isPresent()){
-            throw new DataIntegrityViolationException("patient with that email"+ optionalPatient.get().getPatientEmail() + "already exist ");
+    public PatientDTO updatePatient(long patientId, PatientDTO patientDTO) {
+        Patient patient = patientMapper.toEntity(patientDTO);
+        Optional<Patient> existingPatient = patientRepository.findById(patientId);
+        if (!existingPatient.isPresent()) {
+            throw new CustomNotFoundException("Patient not found with ID: " + patientId, HttpStatus.NOT_FOUND);
         }
-        existingPatient.setPatientEmail(patientDTO.getPatientEmail());
-        existingPatient.setGender(patientDTO.getGender());
-        existingPatient.setAddress(patientDTO.getAddress());
-        existingPatient.setPhoneNumber(patientDTO.getPhoneNumber());
-        Patient savedPatient = patientRepository.save(existingPatient);
-        return patientMapper.toDTO(savedPatient);
+        Optional<Patient> existingPatientEmail = patientRepository.findByPatientEmailAndPatientIDNot(patient.getPatientEmail(), patientId);
+        if (existingPatientEmail.isPresent()) {
+            throw new CustomNotFoundException("patient with that email" + patient.getPatientEmail() + "already exist ", HttpStatus.BAD_REQUEST);
+        }
+        existingPatient.get().setPatientID(patientId);
+        existingPatient.get().setFirstName(patient.getFirstName());
+        existingPatient.get().setLastName(patient.getLastName());
+        existingPatient.get().setPatientEmail(patient.getPatientEmail());
+        existingPatient.get().setPhoneNumber(patient.getPhoneNumber());
+        existingPatient.get().setAddress(patient.getAddress());
+        existingPatient.get().setDateOfBirth(patient.getDateOfBirth());
+        existingPatient.get().setGender(patient.getGender());
+        patientRepository.save(existingPatient.get());
+        return patientMapper.toDTO(existingPatient.get());
     }
 
     @Override
     public void deletePatient(long patientId) {
-        Patient existingPatient = patientRepository.findById(patientId).orElseThrow(()-> new NoSuchElementException("Patient not found with ID: " + patientId));
-        patientRepository.deleteById(patientId);
+        Optional<Patient> optionalPatient = patientRepository.findById(patientId);
+        if (optionalPatient.isPresent()) {
+            patientRepository.deleteById(patientId);
+        } else {
+            throw new CustomNotFoundException("Patient not found with ID: " + patientId, HttpStatus.NOT_FOUND);
+        }
     }
 
     @Override
     public PatientDTO getPatientByEmail(String email) {
         Optional<Patient> patient = patientRepository.findByPatientEmail(email);
-        if(patient.isPresent()){
+        if (patient.isPresent()) {
             Patient existingPatient = patient.get();
             return patientMapper.toDTO(existingPatient);
-        }else{
-            throw new IllegalArgumentException("Patient with that email is not found" + email);
+        } else {
+            throw new CustomNotFoundException("Patient with that email is not found" + email, HttpStatus.NOT_FOUND);
         }
     }
 }

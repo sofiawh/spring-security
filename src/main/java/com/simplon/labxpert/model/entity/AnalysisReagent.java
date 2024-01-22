@@ -28,6 +28,6 @@ public class AnalysisReagent {
 
     @ManyToOne
     private Reagent reagent;
-    @Column(name = "quantity")
+    @Column(name = "quantity", nullable = false)
     private Integer quantity;
 }

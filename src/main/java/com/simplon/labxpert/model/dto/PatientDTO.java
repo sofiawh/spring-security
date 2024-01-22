@@ -16,7 +16,7 @@ import java.util.List;
 @Setter
 public class PatientDTO {
     // TODO : TO @ayoub ait si ahmad CHECK IF THE VALIDATION WORKS AS EXPECTED
-    @Positive
+
     private long patientID;
     @NotBlank(message = "First name is required")
     private String firstName;
@@ -27,7 +27,7 @@ public class PatientDTO {
     private String lastName;
     @Past(message = "Date of birth must be in the past")
     private LocalDate dateOfBirth;
-    @NotBlank(message = "gender is required")
+    @NotNull(message = "gender is required")
     private Gender gender;
     @NotBlank(message = "Address is required")
     private String address;

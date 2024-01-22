@@ -1,19 +1,69 @@
-pipeline{
+pipeline {
     agent any
-    stages{
-        stage('Build'){
-            steps{
-                echo 'Building the project'
+    // TODO : TO @ayoub ait si ahmad SHOULD ADD MORE STAGES TO THE PIPELINE
+    tools {
+        // TODO : To @chaimaa WHEN YOU SET UP YOUR JENKINS ADD THIS TO THE TOOLS SECTION
+        maven 'Maven'
+        jdk 'java8'
+        git 'git'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+            // TODO : To @ayoub ait si ahmad WE SHOULD TO MAKE A BRANCH FOR THE JENKINSFILE NAME "test" AND APPLICATION YML NAME "test"
+                git branch: 'test', url: 'https://github.com/Mouslih0/JUnit-Jenkis-OrderCraft/'
             }
         }
-        stage('Test'){
-            steps{
-                echo 'Testing the project'
+
+        stage('Build') {
+            steps {
+                script {
+                    if (isUnix()) {
+                        sh 'mvn clean install'
+                    } else {
+                        bat 'mvn clean install'
+                    }
+                }
             }
         }
-        stage('Deploy'){
-            steps{
-                echo 'Deploying the project'
+
+        stage('Test') {
+            steps {
+                script {
+                    if (isUnix()) {
+                        sh 'mvn test'
+                    } else {
+                        bat 'mvn test'
+                    }
+                }
+            }
+        }
+
+        stage('Report') {
+            steps {
+                script {
+                    if (isUnix()) {
+                        sh 'mvn clean site'
+                    } else {
+                        bat 'mvn clean site'
+                    }
+                }
             }
         }
     }
+
+    post {
+        success {
+            echo 'Build succeeded!'
+        }
+
+        failure {
+            echo 'Build failed!'
+        }
+
+        unstable {
+            echo 'Build unstable!'
+        }
+    }
+}

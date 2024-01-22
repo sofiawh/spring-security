@@ -1,6 +1,5 @@
 package com.simplon.labxpert.model.entity;
 import com.simplon.labxpert.model.enums.UserRole;
-import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
@@ -26,21 +25,17 @@ public class User {
     )
     @Column(name = "userID")
     private long userID;
-    @NotNull
-    @Column(name = "email", unique = true)
+    @Column(name = "email", unique = true , nullable = false)
     private String email;
-    @Column(name = "emailVerified")
-    private Boolean isEmailVerified = false;
-    @NotNull
-    @Column(name = "username", unique = true)
+    @Column(name = "emailVerified" , nullable = false)
+    private Boolean isEmailVerified;
+    @Column(name = "username", unique = true, nullable = false)
     private String username;
-    @NotNull
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;
-    @NotNull
+    @Column(name = "userRole", nullable = false)
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
-    @NotNull
     @Column(name = "personalInfo")
     private String personalInfo;
     @OneToMany(mappedBy = "user")
