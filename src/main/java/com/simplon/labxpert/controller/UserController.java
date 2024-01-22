@@ -79,7 +79,6 @@ public class UserController {
         UserDTO updatedUser = userService.updateUser(userDTO, id);
         return new ResponseEntity<>(updatedUser, HttpStatus.OK);
     }
-
     /**
      * Deletes a user.
      * @param id the ID of the user to delete.
