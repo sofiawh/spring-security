@@ -12,7 +12,7 @@ pipeline {
         stage('Checkout') {
             steps {
             // TODO : To @ayoub ait si ahmad WE SHOULD TO MAKE A BRANCH FOR THE JENKINSFILE NAME "test" AND APPLICATION YML NAME "test"
-                git branch: 'test', url: 'https://github.com/Mouslih0/JUnit-Jenkis-OrderCraft/'
+                git branch: 'test', url: 'https://github.com/ayoub-ait-si-ahmad/labxpert-version2/'
             }
         }
 
