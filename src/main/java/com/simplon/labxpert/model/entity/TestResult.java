@@ -24,7 +24,7 @@ public class TestResult {
             generator = "testResult_id_sequence"
     )
     private long testResultID;
-    @Column(name = "valueOfTest")
+    @Column(name = "valueOfTest", nullable = false)
     private double valueOfTest;
     @Enumerated(EnumType.STRING)
     private ResultStatus testResultStatus;

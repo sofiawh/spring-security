@@ -7,7 +7,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
+
 
 @Getter
 @Setter
@@ -28,14 +28,15 @@ public class Analysis {
             generator = "analysis_id_sequence"
     )
     private long analysisID;
-    @Column(name = "startDate")
+    @Column(name = "startDate", nullable = false)
     private LocalDate startDate;
-    @Column(name = "endDate")
+    @Column(name = "endDate", nullable = false)
     private LocalDate endDate;
-    @Column(name = "comments")
+    @Column(name = "comments", nullable = false)
     private String comments;
+    @Column(name = "analysisStatus", nullable = false)
     @Enumerated(EnumType.STRING)
-    private AnalysisStatus analysisStatus = AnalysisStatus.NEED_SCHEDULING;
+    private AnalysisStatus analysisStatus ;
     @Enumerated(EnumType.STRING)
     private ResultStatus resultStatus;
     @ManyToOne

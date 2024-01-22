@@ -27,15 +27,15 @@ public class Sample {
             generator = "sample_id_sequence"
     )
     private long sampleID;
-    @NonNull
+    @Column(name = "analysisType",nullable = false)
     @Enumerated(EnumType.STRING)
     private AnalysisType analysisType;
-    @Column(name = "sampleDescription")
+    @Column(name = "sampleDescription", nullable = false)
     private String sampleDescription;
-    @Column(name = "collectionDate")
+    @Column(name = "collectionDate", nullable = false)
     private LocalDate collectionDate;
     @Enumerated(EnumType.STRING)
-    private SampleStatus sampleStatus = SampleStatus.PENDING;
+    private SampleStatus sampleStatus ;
     @ManyToOne
     @JoinColumn(name = "patient_id")
     private Patient patient;

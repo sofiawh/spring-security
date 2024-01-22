@@ -24,13 +24,13 @@ public class Test {
             generator = "test_id_sequence"
     )
     private long testID;
-    @Column(name = "nameTest")
+    @Column(name = "nameTest", nullable = false)
     private String nameTest;
-    @Column(name = "maxValue")
+    @Column(name = "maxValue", nullable = false)
     private double maxValue;
-    @Column(name = "minValue")
+    @Column(name = "minValue", nullable = false)
     private double minValue;
-    @Column(name = "measurementUnits")
+    @Column(name = "measurementUnits", nullable = false)
     private String measurementUnits;
 
     @OneToMany(mappedBy = "test")

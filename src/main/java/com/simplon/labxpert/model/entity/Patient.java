@@ -27,19 +27,19 @@ public class Patient {
             generator = "patient_id_sequence"
     )
     private long patientID;
-    @Column(name = "firstName")
+    @Column(name = "firstName", nullable = false)
     private String firstName;
-    @Column(name = "patientEmail", unique = true)
+    @Column(name = "patientEmail", unique = true, nullable = false)
     private String patientEmail;
-    @Column(name = "lastName")
+    @Column(name = "lastName", nullable = false)
     private String lastName;
-    @Column(name="dateOfBirth")
+    @Column(name="dateOfBirth", nullable = false)
     private LocalDate dateOfBirth;
     @Enumerated(EnumType.STRING)
     private Gender gender;
-    @Column(name = "address")
+    @Column(name = "address", nullable = false)
     private String address;
-    @Column(name = "phoneNumber")
+    @Column(name = "phoneNumber", nullable = false)
     private String phoneNumber;
     // TODO : TO @Ayoub ait si ahmad CORRECT THAT SHOULD RETURN THE LIST OF SAMPLES DEPENDING ON THE CONTEXT
     // TODO : TO @Ayoub ait si ahmad CORRECT ALSO THE FETCH TYPE AND THE CASCADE TYPE AND THE DELETE TYPE

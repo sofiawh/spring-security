@@ -43,7 +43,6 @@ public class UserDTO {
     private String password;
 
     @JsonView({Views.CreateUser.class, Views.UpdateUser.class})
-    @NotEmpty(message = "User role is mandatory")
     private UserRole userRole;
 
     @JsonView({Views.CreateUser.class, Views.UpdateUser.class})

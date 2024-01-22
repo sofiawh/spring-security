@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
 /**
  * Implementation of the User service.
  * It contains the methods that the service will implement.
@@ -99,6 +100,7 @@ public class UserServiceImpl implements UserService {
             LOGGER.info("Creating new user");
             User user = userMapper.toEntity(userDTO);
             validateUser(user);
+            user.setIsEmailVerified(false);
             User savedUser = userRepository.save(user);
             return userMapper.toDTO(savedUser);
         } catch (Exception e) {
@@ -127,16 +129,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO updateUser(UserDTO userDTO, long id) {
         try {
+            User user = userMapper.toEntity(userDTO);
             LOGGER.info("Updating user with ID: {}", id);
             Optional<User> existingUserOptional = userRepository.findById(id);
             if (!existingUserOptional.isPresent()) {
                 throw new CustomNotFoundException(USER_NOT_FOUND + id, HttpStatus.NOT_FOUND);
             }
-            User user = userMapper.toEntity(userDTO);
             validateUser(user, id);
-            user.setUserID(id);
-            User savedUser = userRepository.save(user);
-            return userMapper.toDTO(savedUser);
+            User existingUser = existingUserOptional.get();
+            existingUser.setUserID(id);
+            userRepository.save(existingUser);
+            return userMapper.toDTO(existingUser);
         } catch (Exception e) {
             LOGGER.error("Error occurred while updating user with ID: {}", id, e);
             throw e;

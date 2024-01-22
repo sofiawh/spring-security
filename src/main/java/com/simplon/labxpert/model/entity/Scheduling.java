@@ -25,13 +25,13 @@ public class Scheduling {
             generator = "scheduling_id_sequence"
     )
     private long schedulingID;
-    @Column(name = "startDateAndTime")
+    @Column(name = "startDateAndTime", nullable = false)
     private LocalDate startDateAndTime;
-    @Column(name = "endDateAndTime")
+    @Column(name = "endDateAndTime", nullable = false)
     private LocalDate endDateAndTime;
     @Enumerated(EnumType.STRING)
-    private Priority priority = Priority.NORMAL;
-    @Column(name = "notes")
+    private Priority priority ;
+    @Column(name = "notes", nullable = false)
     private String notes;
     @ManyToOne
     @JoinColumn(name = "user_id")
