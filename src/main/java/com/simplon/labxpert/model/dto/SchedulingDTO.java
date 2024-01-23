@@ -20,7 +20,6 @@ import java.time.LocalDate;
 @Getter
 @Setter
 public class SchedulingDTO {
-    @Positive(message = "schedulingID must be positive")
     private long schedulingID;
 
     @NotNull(message = "startDateAndTime must not be null")
@@ -39,8 +38,8 @@ public class SchedulingDTO {
     private String notes;
 
     @NotNull(message = "user must not be null")
-    private User user;
+    private UserDTO userDTO;
 
     @NotNull(message = "analysis must not be null")
-    private Analysis analysis;
+    private AnalysisDTO analysisDTO;
 }

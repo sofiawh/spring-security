@@ -44,4 +44,7 @@ public class AnalysisDTO {
 
     @NotNull(message = "Analysis reagent is required")
     private List<AnalysisReagentDTO> analysisReagentDTOs;
+
+    @NotNull(message = "testResults is required")
+    private List<TestResultDTO> testResultDTOs;
 }

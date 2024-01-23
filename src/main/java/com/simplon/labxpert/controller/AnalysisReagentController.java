@@ -12,7 +12,11 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-
+/**
+ * Controller class for managing analysis reagents.
+ *
+ * @Author Ayoub Ait Si Ahmad
+ */
 @RestController
 @RequestMapping("/api/v1/analysis-reagent")
 public class AnalysisReagentController {
@@ -23,13 +27,22 @@ public class AnalysisReagentController {
     public AnalysisReagentController(AnalysisReagentService analysisReagentService) {
         this.analysisReagentService = analysisReagentService;
     }
-
+    /**
+     * This method allows to get all analysis reagents.
+     *
+     * @return a list of all analysis reagents.
+     */
     @GetMapping
     public ResponseEntity<List<AnalysisReagentDTO>> getAllAnalysisReagents() {
         LOGGER.info("Getting all analysis reagents");
         return new ResponseEntity(analysisReagentService.getAllAnalysisReagents(), HttpStatus.OK);
     }
 
+    /**
+     * This method allows to create an analysis reagent.
+     * @param analysisReagentDTO the analysis reagent to create.
+     * @return the created analysis reagent.
+     */
     @PostMapping
     public ResponseEntity<AnalysisReagentDTO> createAnalysisReagent(@Valid @RequestBody AnalysisReagentDTO analysisReagentDTO) {
         LOGGER.info("Creating analysis reagent");

@@ -3,9 +3,13 @@ package com.simplon.labxpert.service.impl;
 import com.simplon.labxpert.exception.handler.CustomNotFoundException;
 import com.simplon.labxpert.mapper.SchedulingMapper;
 import com.simplon.labxpert.model.dto.SchedulingDTO;
+import com.simplon.labxpert.model.entity.Analysis;
 import com.simplon.labxpert.model.entity.Scheduling;
 import com.simplon.labxpert.model.entity.User;
+import com.simplon.labxpert.model.enums.AnalysisStatus;
+import com.simplon.labxpert.repository.AnalysisRepository;
 import com.simplon.labxpert.repository.SchedulingRepository;
+import com.simplon.labxpert.repository.UserRepository;
 import com.simplon.labxpert.service.SchedulingService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,11 +30,18 @@ public class SchedulingServiceImpl implements SchedulingService {
     private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
     private final SchedulingMapper schedulingMapper;
     private final SchedulingRepository schedulingRepository;
+    private final UserRepository userRepository;
+    private final AnalysisRepository analysisRepository;
 
     @Autowired
-    public SchedulingServiceImpl(SchedulingMapper schedulingMapper, SchedulingRepository schedulingRepository) {
+    public SchedulingServiceImpl(SchedulingMapper schedulingMapper,
+                                 SchedulingRepository schedulingRepository,
+                                 UserRepository userRepository,
+                                 AnalysisRepository analysisRepository) {
         this.schedulingMapper = schedulingMapper;
         this.schedulingRepository = schedulingRepository;
+        this.userRepository = userRepository;
+        this.analysisRepository = analysisRepository;
     }
 
 
@@ -66,7 +77,25 @@ public class SchedulingServiceImpl implements SchedulingService {
 
     @Override
     public SchedulingDTO createScheduling(SchedulingDTO schedulingDTO) {
-        return null;
+        LOGGER.info("Creating scheduling");
+        Scheduling scheduling = schedulingMapper.toEntity(schedulingDTO);
+        Optional<User> userOptional = userRepository.findById(schedulingDTO.getUserDTO().getUserID());
+        if (!userOptional.isPresent()){
+            LOGGER.warn("User not found with id: {}",schedulingDTO.getUserDTO().getUserID());
+            throw new CustomNotFoundException("User not found with id: "+schedulingDTO.getUserDTO().getUserID(), HttpStatus.NOT_FOUND);
+        }
+        Optional<Analysis> analysisOptional = analysisRepository.findById(schedulingDTO.getAnalysisDTO().getAnalysisID());
+        if (!analysisOptional.isPresent()){
+            LOGGER.warn("Analysis not found with id: {}",schedulingDTO.getAnalysisDTO().getAnalysisID());
+            throw new CustomNotFoundException("Analysis not found with id: "+schedulingDTO.getAnalysisDTO().getAnalysisID(), HttpStatus.NOT_FOUND);
+        }
+        scheduling.setUser(userOptional.get());
+        scheduling.setAnalysis(analysisOptional.get());
+        // change the status of analysis to scheduled
+        analysisOptional.get().setAnalysisStatus(AnalysisStatus.SCHEDULED);
+        Analysis analysis = analysisRepository.save(analysisOptional.get());
+        Scheduling schedulingCreated = schedulingRepository.save(scheduling);
+        return schedulingMapper.toDTO(schedulingCreated);
     }
 
     @Override
@@ -76,6 +105,12 @@ public class SchedulingServiceImpl implements SchedulingService {
 
     @Override
     public void deleteScheduling(long schedulingId) {
-
+        LOGGER.info("Deleting scheduling with id: {}",schedulingId);
+        Optional<Scheduling> schedulingOptional = schedulingRepository.findById(schedulingId);
+        if (!schedulingOptional.isPresent()){
+            LOGGER.warn(SCHEDULING_NOT_FOUND + schedulingId);
+            throw new CustomNotFoundException(SCHEDULING_NOT_FOUND + schedulingId, HttpStatus.NOT_FOUND);
+        }
+        schedulingRepository.deleteById(schedulingId);
     }
 }

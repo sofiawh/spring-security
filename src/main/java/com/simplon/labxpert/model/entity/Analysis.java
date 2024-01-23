@@ -57,7 +57,7 @@ public class Analysis {
     @OneToMany(mappedBy = "analysis")
     private List<Scheduling> schedulings;
 
-    @JsonIgnore
+
     @OneToMany(mappedBy = "analysis")
     private List<TestResult> testResults;
 }

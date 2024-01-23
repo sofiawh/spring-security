@@ -21,7 +21,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
+/**
+ * Implementation of the AnalysisReagent service.
+ * It contains the methods that the service will implement.
+ */
 @Service
 public class AnalysisReagentServiceImpl implements AnalysisReagentService {
     private static final Logger LOGGER = LoggerFactory.getLogger(AnalysisReagentServiceImpl.class);
@@ -47,37 +50,35 @@ public class AnalysisReagentServiceImpl implements AnalysisReagentService {
     public AnalysisReagentDTO createAnalysisReagent(AnalysisReagentDTO analysisReagentDTO) {
         LOGGER.info("Creating analysis reagent");
         AnalysisReagent analysisReagent = analysisReagentMapper.toEntity(analysisReagentDTO);
-        Optional<Analysis> analysis = analysisRepository.findById(analysisReagentDTO.getAnalysisDTO().getAnalysisID());
-        Optional<Reagent> reagent = reagentRepository.findById(analysisReagentDTO.getReagentDTO().getReagentID());
-        if (!analysis.isPresent()) {
-            LOGGER.error("Analysis not found with id : {}", analysisReagentDTO.getAnalysisDTO().getAnalysisID());
-            throw new CustomNotFoundException("Analysis not found with id : " + analysisReagentDTO.getAnalysisDTO().getAnalysisID() , HttpStatus.NOT_FOUND);
-        }
-        if (!reagent.isPresent()) {
-            LOGGER.error("Reagent not found with id : {}", analysisReagentDTO.getReagentDTO().getReagentID());
-            throw new CustomNotFoundException("Reagent not found with id : " + analysisReagentDTO.getReagentDTO().getReagentID() , HttpStatus.NOT_FOUND);
-        }
-        // check if the analys has the status "NEED_SCHEDULING"
-        if (!analysis.get().getAnalysisStatus().equals(AnalysisStatus.NEED_SCHEDULING)) {
+
+        Analysis analysis = analysisRepository.findById(analysisReagentDTO.getAnalysisDTO().getAnalysisID())
+                .orElseThrow(() -> new CustomNotFoundException("Analysis not found with id : " + analysisReagentDTO.getAnalysisDTO().getAnalysisID(), HttpStatus.NOT_FOUND));
+
+        Reagent reagent = reagentRepository.findById(analysisReagentDTO.getReagentDTO().getReagentID())
+                .orElseThrow(() -> new CustomNotFoundException("Reagent not found with id : " + analysisReagentDTO.getReagentDTO().getReagentID(), HttpStatus.NOT_FOUND));
+
+        if (!analysis.getAnalysisStatus().equals(AnalysisStatus.NEED_SCHEDULING)) {
             LOGGER.error("Analysis status is not NEED_SCHEDULING");
             throw new CustomNotFoundException("Analysis status is not NEED_SCHEDULING", HttpStatus.NOT_FOUND);
         }
-        // check if the reagent has the status "IN_STOCK_VALID"
-        if (!reagent.get().getReagentStatus().equals(ReagentStatus.IN_STOCK_VALID)) {
+
+        if (!reagent.getReagentStatus().equals(ReagentStatus.IN_STOCK_VALID)) {
             LOGGER.error("Reagent status is not IN_STOCK_VALID");
             throw new CustomNotFoundException("Reagent status is not IN_STOCK_VALID", HttpStatus.NOT_FOUND);
         }
-        // check if it's enough
-        if (reagent.get().getQuantityInStock() < analysisReagentDTO.getQuantity()) {
+
+        if (reagent.getQuantityInStock() < analysisReagentDTO.getQuantity()) {
             LOGGER.error("Not enough reagent");
             throw new CustomNotFoundException("Not enough reagent", HttpStatus.NOT_FOUND);
         }
-        // decrement the quantity of the reagent and save it
-        reagent.get().setQuantityInStock(reagent.get().getQuantityInStock() - analysisReagentDTO.getQuantity());
-        reagentRepository.save(reagent.get());
-        analysisReagent.setAnalysis(analysis.get());
-        analysisReagent.setReagent(reagent.get());
+
+        reagent.setQuantityInStock(reagent.getQuantityInStock() - analysisReagentDTO.getQuantity());
+        reagentRepository.save(reagent);
+
+        analysisReagent.setAnalysis(analysis);
+        analysisReagent.setReagent(reagent);
         analysisReagentRepository.save(analysisReagent);
+
         return analysisReagentMapper.toDTO(analysisReagent);
     }
 
