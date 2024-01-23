@@ -18,7 +18,6 @@ import java.util.List;
 @Setter
 public class ReagentDTO {
 
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private long reagentID;
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)

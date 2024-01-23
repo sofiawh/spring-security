@@ -17,6 +17,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -66,7 +67,7 @@ class PatientControllerTest {
      */
     @Test
     void getAllPatients() throws Exception {
-        List<PatientDTO> fakePatients = Arrays.asList(newPatient);
+        List<PatientDTO> fakePatients = Collections.singletonList(newPatient);
         when(patientService.getAllPatients()).thenReturn(fakePatients);
         mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/patients"))
                 .andExpect(status().isOk())

@@ -33,9 +33,7 @@ public class PatientDTO {
     private String address;
     @Pattern(regexp = "\\d{10}", message = "Phone number must be 10 digits")
     private String phoneNumber;
-    /*
-     * TODO : TO @ayoub ait si ahmad MAKE A JSON VIEW FOR THIS DEPENDING ON THE USE CASE
-     * beacause this can cause a mapping error
-     * private List<Sample> samples;
-     */
+
+    // TODO : @ayoub ait si ahmad THIS SHOULD NOT BE DISPLAY IN THE SAMPLE RESPONSE
+    private List<SampleDTO> samplesDTO;
 }

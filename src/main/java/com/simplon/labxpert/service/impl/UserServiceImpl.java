@@ -25,8 +25,8 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
     private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
     private static final String USER_NOT_FOUND = "User not found with id: ";
-    private UserRepository userRepository;
-    private UserMapper userMapper;
+    private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository, UserMapper userMapper) {

@@ -5,5 +5,6 @@ package com.simplon.labxpert.model.enums;
  */
 public enum ResultStatus {
     NORMAL,
-    ANORMAL
+    ANORMAL,
+    WITHOUT_RESULT_YET ,
 }

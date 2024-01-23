@@ -1,7 +1,10 @@
 package com.simplon.labxpert.exception.handler;
 
 import org.springframework.http.HttpStatus;
-
+/**
+ * This class is used to create a custom exception.
+ * It contains the status and the error message.
+ */
 public class CustomNotFoundException extends RuntimeException {
 
     private final HttpStatus status;

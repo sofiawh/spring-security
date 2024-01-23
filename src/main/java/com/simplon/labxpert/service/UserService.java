@@ -12,7 +12,7 @@ import java.util.Optional;
  * It contains the methods that the service will implement.
  */
 public interface UserService {
-    public UserDTO getUserById(long id);
+    UserDTO getUserById(long id);
 
     UserDTO getUserByUsername(String username);
 

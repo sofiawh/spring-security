@@ -21,7 +21,7 @@ public class AnalysisReagent {
             strategy = GenerationType.SEQUENCE,
             generator = "analysisReagent_id_sequence"
     )
-    private Long analysisReagentID;
+    private long analysisReagentID;
 
     @ManyToOne
     private Analysis analysis;
@@ -29,5 +29,5 @@ public class AnalysisReagent {
     @ManyToOne
     private Reagent reagent;
     @Column(name = "quantity", nullable = false)
-    private Integer quantity;
+    private int quantity;
 }

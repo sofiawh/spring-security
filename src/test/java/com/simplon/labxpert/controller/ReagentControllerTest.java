@@ -14,6 +14,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -56,7 +57,7 @@ class ReagentControllerTest {
      */
     @Test
     void getAllReagents() throws Exception {
-        List<ReagentDTO> fakeReagents = Arrays.asList(newReagent);
+        List<ReagentDTO> fakeReagents = Collections.singletonList(newReagent);
         when(reagentService.getAllReagents()).thenReturn(fakeReagents);
         mockMvc.perform(get("/api/v1/reagents"))
                 .andExpect(status().isOk())
@@ -69,7 +70,7 @@ class ReagentControllerTest {
      */
     @Test
     void getAllReagentsByStatus() throws Exception {
-        List<ReagentDTO> fakeReagents = Arrays.asList(newReagent);
+        List<ReagentDTO> fakeReagents = Collections.singletonList(newReagent);
         when(reagentService.getAllReagentsByStatus(any())).thenReturn(fakeReagents);
         mockMvc.perform(get("/api/v1/reagents/status")
                         .param("reagentStatus", "IN_STOCK_VALID"))
@@ -95,7 +96,7 @@ class ReagentControllerTest {
      */
     @Test
     void getAllExpiredReagents() throws Exception {
-        List<ReagentDTO> fakeExpiredReagents = Arrays.asList(newReagent);
+        List<ReagentDTO> fakeExpiredReagents = Collections.singletonList(newReagent);
         when(reagentService.getAllReagentsThatExpired()).thenReturn(fakeExpiredReagents);
         mockMvc.perform(get("/api/v1/reagents/expired"))
                 .andExpect(status().isOk())
@@ -108,7 +109,7 @@ class ReagentControllerTest {
      */
     @Test
     void getAllReagentsThatWillExpireSoon() throws Exception {
-        List<ReagentDTO> fakeReagentsSoonToExpire = Arrays.asList(newReagent);
+        List<ReagentDTO> fakeReagentsSoonToExpire = Collections.singletonList(newReagent);
         when(reagentService.getAllReagentsThatWillExpireSoon(anyInt())).thenReturn(fakeReagentsSoonToExpire);
         mockMvc.perform(get("/api/v1/reagents/expiring-soon")
                         .param("days", "7"))

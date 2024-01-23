@@ -16,6 +16,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -59,7 +60,7 @@ class SampleControllerTest {
     }
     @Test
     void getAllSamples() throws Exception {
-        List<SampleDTO> fakeSamples = Arrays.asList(newSample);
+        List<SampleDTO> fakeSamples = Collections.singletonList(newSample);
         when(sampleService.getAllSimple()).thenReturn(fakeSamples);
         mockMvc.perform(get("/api/v1/samples"))
                 .andExpect(status().isOk())

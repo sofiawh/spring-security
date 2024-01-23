@@ -7,15 +7,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
  * Controller class for managing scheduling.
+ *
  * @Author Ayoub Ait Si Ahmad
  */
 @RestController
@@ -25,15 +24,17 @@ public class SchedulingController {
     private final SchedulingService schedulingService;
 
     @Autowired
-    public SchedulingController(SchedulingService schedulingService){
+    public SchedulingController(SchedulingService schedulingService) {
         this.schedulingService = schedulingService;
     }
+
     /**
      * This method allows to get all schedulings.
+     *
      * @return a list of all schedulings.
      */
     @GetMapping
-    public ResponseEntity<List<SchedulingDTO>> getALlSchedulings(){
+    public ResponseEntity<List<SchedulingDTO>> getALlSchedulings() {
         LOGGER.info("Fetching all schedulings Controller");
         List<SchedulingDTO> schedulingDTOS = schedulingService.getAllSchedulings();
         return new ResponseEntity<>(schedulingDTOS, HttpStatus.OK);
@@ -41,14 +42,39 @@ public class SchedulingController {
 
     /**
      * This method allows to get a scheduling by id.
+     *
      * @param id the id of the scheduling to get.
      * @return a scheduling.
      */
     @GetMapping("/{id}")
-    public ResponseEntity<SchedulingDTO> getSchedulingById(@PathVariable long id){
+    public ResponseEntity<SchedulingDTO> getSchedulingById(@PathVariable long id) {
         LOGGER.info("Fetching Scheduling by id Controller");
         SchedulingDTO schedulingDTO = schedulingService.getSchedulingById(id);
-        return new ResponseEntity<>(schedulingDTO,HttpStatus.OK);
+        return new ResponseEntity<>(schedulingDTO, HttpStatus.OK);
     }
 
+    /**
+     * This method allows to create a scheduling.
+     *
+     * @param schedulingDTO the scheduling to create.
+     * @return the created scheduling.
+     */
+    @PostMapping
+    public ResponseEntity<SchedulingDTO> createScheduling(@Valid @RequestBody SchedulingDTO schedulingDTO) {
+        LOGGER.info("Creating Scheduling Controller");
+        SchedulingDTO schedulingDTO1 = schedulingService.createScheduling(schedulingDTO);
+        return new ResponseEntity<>(schedulingDTO1, HttpStatus.CREATED);
+    }
+
+    /**
+     * This method allows to delete a scheduling by id.
+     *
+     * @param id the id of the scheduling to delete.
+     */
+    @DeleteMapping
+    public ResponseEntity<Void> deleteScheduling(@PathVariable long id) {
+        LOGGER.info("Deleting Scheduling Controller");
+        schedulingService.deleteScheduling(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }

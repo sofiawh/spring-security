@@ -10,10 +10,22 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+/**
+ * Configuration class for Swagger.
+ * api() method is used to create a Docket instance.
+ * apiInfo() method is used to create an ApiInfo instance.
+ *
+ * @Author Chaimaa Mahy
+ */
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
 
+    /**
+     * Method to create a Docket instance.
+     *
+     * @return Docket instance.
+     */
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
@@ -24,6 +36,11 @@ public class SwaggerConfig {
                 .apiInfo(apiInfo());
     }
 
+    /**
+     * Method to create an ApiInfo instance.
+     *
+     * @return ApiInfo instance.
+     */
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder().title("LabXpert Spring Boot REST API Documentation")
                 .description("REST APIs For Managing a labo")

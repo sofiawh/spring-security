@@ -24,7 +24,7 @@ import java.util.NoSuchElementException;
 @RequestMapping("/api/v1/samples")
 public class SampleController {
     private static final Logger LOGGER = LoggerFactory.getLogger(PatientController.class);
-    private SampleService sampleService;
+    private final SampleService sampleService;
 
     @Autowired
     public SampleController(SampleService sampleService) {

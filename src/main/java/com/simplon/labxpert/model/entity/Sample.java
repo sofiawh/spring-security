@@ -27,20 +27,24 @@ public class Sample {
             generator = "sample_id_sequence"
     )
     private long sampleID;
+
     @Column(name = "analysisType",nullable = false)
     @Enumerated(EnumType.STRING)
     private AnalysisType analysisType;
+
     @Column(name = "sampleDescription", nullable = false)
     private String sampleDescription;
+
     @Column(name = "collectionDate", nullable = false)
     private LocalDate collectionDate;
+
     @Enumerated(EnumType.STRING)
     private SampleStatus sampleStatus ;
+
     @ManyToOne
     @JoinColumn(name = "patient_id")
     private Patient patient;
-    // TODO : TO @Ayoub ait si ahmad CORRECT THAT SHOULD RETURN THE LIST OF SAMPLES DEPENDING ON THE CONTEXT
-    // TODO : TO @Ayoub ait si ahmad CORRECT ALSO THE FETCH TYPE AND THE CASCADE TYPE AND THE DELETE TYPE
-    @OneToMany(mappedBy = "sample")
-    private List<Analysis> analyses;
+
+    @OneToOne(mappedBy = "sample", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Analysis analysis;
 }
