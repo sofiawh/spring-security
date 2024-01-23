@@ -17,6 +17,7 @@ The above class diagram presents the structure of the LabXpert system. It detail
    git clone https://github.com/ayoub-ait-si-ahmad/labxpert-version2.git
 
 2. **Configure the Database:**
+   
   Create a PostgreSQL database.
   Update the connection information in the application.properties file.
 
@@ -24,4 +25,5 @@ The above class diagram presents the structure of the LabXpert system. It detail
    mvn clean install
 
    ## Author
+
    [Ayoub ait Si Ahmed] ,[Chaimaa Mahy]
