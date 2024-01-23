@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class AnalysisServiceImpl implements AnalysisService {
@@ -38,12 +39,20 @@ public class AnalysisServiceImpl implements AnalysisService {
 
     @Override
     public List<AnalysisDTO> findAllAnalysis() {
-        return null;
+        LOGGER.info("Getting all analysis");
+        List<Analysis> analysisList = analysisRepository.findAll();
+        return analysisList.stream().map(analysisMapper::toDTO).collect(Collectors.toList());
     }
 
     @Override
     public AnalysisDTO findAnalysisById(Long id) {
-        return null;
+        LOGGER.info("Getting analysis with id : {}", id);
+        Optional<Analysis> analysis = analysisRepository.findById(id);
+        if (!analysis.isPresent()) {
+            LOGGER.error("Analysis not found with id : {}", id);
+            throw new CustomNotFoundException("Analysis not found with id : " + id, HttpStatus.NOT_FOUND);
+        }
+        return analysisMapper.toDTO(analysis.get());
     }
 
     @Override
@@ -69,6 +78,7 @@ public class AnalysisServiceImpl implements AnalysisService {
         analysis.setSample(sample.get());
         analysis.setAnalysisStatus(AnalysisStatus.NEED_SCHEDULING);
         analysis.setResultStatus(ResultStatus.WITHOUT_RESULT_YET);
+
         analysis = analysisRepository.save(analysis);
         LOGGER.info("Analysis created");
         return analysisMapper.toDTO(analysis);
@@ -80,7 +90,15 @@ public class AnalysisServiceImpl implements AnalysisService {
     }
 
     @Override
-    public void deleteAnalysis(Long id) {
-
+    public String deleteAnalysis(Long id) {
+        LOGGER.info("Deleting analysis with id : {}", id);
+        Optional<Analysis> analysis = analysisRepository.findById(id);
+        if (!analysis.isPresent()) {
+            LOGGER.error("Analysis not found with id : {}", id);
+            throw new CustomNotFoundException("Analysis not found with id : " + id, HttpStatus.NOT_FOUND);
+        }
+        analysisRepository.delete(analysis.get());
+        LOGGER.info("Analysis deleted");
+        return "Analysis deleted successfully";
     }
 }

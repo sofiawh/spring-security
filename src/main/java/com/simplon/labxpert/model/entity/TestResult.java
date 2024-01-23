@@ -24,13 +24,14 @@ public class TestResult {
             generator = "testResult_id_sequence"
     )
     private long testResultID;
+
     @Column(name = "valueOfTest", nullable = false)
     private double valueOfTest;
-    @Enumerated(EnumType.STRING)
-    private ResultStatus testResultStatus;
+
     @ManyToOne
     @JoinColumn(name = "test_id")
     private Test test;
+
     @ManyToOne
     @JoinColumn(name = "analysis_id")
     private Analysis analysis;

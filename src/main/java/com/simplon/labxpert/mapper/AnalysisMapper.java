@@ -9,7 +9,7 @@ import org.mapstruct.Mapping;
  * Mapper for the Analysis entity.
  * It contains all the methods that we need to map a AnalysisDTO to a Analysis and vice versa.
  */
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = {SampleMapper.class, AnalysisReagentMapper.class})
 public interface AnalysisMapper {
 
 

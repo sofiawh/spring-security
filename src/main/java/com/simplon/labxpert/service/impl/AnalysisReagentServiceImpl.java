@@ -6,6 +6,8 @@ import com.simplon.labxpert.model.dto.AnalysisReagentDTO;
 import com.simplon.labxpert.model.entity.Analysis;
 import com.simplon.labxpert.model.entity.AnalysisReagent;
 import com.simplon.labxpert.model.entity.Reagent;
+import com.simplon.labxpert.model.enums.AnalysisStatus;
+import com.simplon.labxpert.model.enums.ReagentStatus;
 import com.simplon.labxpert.repository.AnalysisReagentRepository;
 import com.simplon.labxpert.repository.AnalysisRepository;
 import com.simplon.labxpert.repository.ReagentRepository;
@@ -16,7 +18,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class AnalysisReagentServiceImpl implements AnalysisReagentService {
@@ -54,12 +58,12 @@ public class AnalysisReagentServiceImpl implements AnalysisReagentService {
             throw new CustomNotFoundException("Reagent not found with id : " + analysisReagentDTO.getReagentDTO().getReagentID() , HttpStatus.NOT_FOUND);
         }
         // check if the analys has the status "NEED_SCHEDULING"
-        if (!analysis.get().getAnalysisStatus().equals("NEED_SCHEDULING")) {
+        if (!analysis.get().getAnalysisStatus().equals(AnalysisStatus.NEED_SCHEDULING)) {
             LOGGER.error("Analysis status is not NEED_SCHEDULING");
             throw new CustomNotFoundException("Analysis status is not NEED_SCHEDULING", HttpStatus.NOT_FOUND);
         }
         // check if the reagent has the status "IN_STOCK_VALID"
-        if (!reagent.get().getReagentStatus().equals("IN_STOCK_VALID")) {
+        if (!reagent.get().getReagentStatus().equals(ReagentStatus.IN_STOCK_VALID)) {
             LOGGER.error("Reagent status is not IN_STOCK_VALID");
             throw new CustomNotFoundException("Reagent status is not IN_STOCK_VALID", HttpStatus.NOT_FOUND);
         }
@@ -75,5 +79,13 @@ public class AnalysisReagentServiceImpl implements AnalysisReagentService {
         analysisReagent.setReagent(reagent.get());
         analysisReagentRepository.save(analysisReagent);
         return analysisReagentMapper.toDTO(analysisReagent);
+    }
+
+    @Override
+    public List<AnalysisReagentDTO> getAllAnalysisReagents() {
+        LOGGER.info("Getting all analysis reagents");
+        List<AnalysisReagent> analysisReagents = analysisReagentRepository.findAll();
+        // map the list of analysis reagents to a list of analysis reagents DTO
+        return analysisReagents.stream().map(analysisReagentMapper::toDTO).collect(Collectors.toList());
     }
 }

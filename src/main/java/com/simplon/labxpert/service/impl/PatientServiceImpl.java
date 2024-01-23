@@ -24,8 +24,8 @@ import java.util.stream.Collectors;
  */
 @Service
 public class PatientServiceImpl implements PatientService {
-    private PatientRepository patientRepository;
-    private PatientMapper patientMapper;
+    private final PatientRepository patientRepository;
+    private final PatientMapper patientMapper;
 
     @Autowired
     public PatientServiceImpl(PatientRepository patientRepository, PatientMapper patientMapper) {

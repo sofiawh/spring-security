@@ -17,5 +17,5 @@ public interface ReagentService {
     ReagentDTO addReagent(ReagentDTO reagentDTO);
     ReagentDTO updateReagent(ReagentDTO reagentDTO, long reagentID);
     String deleteReagent(long reagentID);
-    public void updateReagentStatus();
+    void updateReagentStatus();
 }

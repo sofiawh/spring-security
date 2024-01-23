@@ -14,6 +14,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.http.MediaType;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -61,7 +62,7 @@ class UserControllerTest {
      */
     @Test
     void getAllUsers() throws Exception {
-        List<UserDTO> fakeUsers = Arrays.asList(newUser);
+        List<UserDTO> fakeUsers = Collections.singletonList(newUser);
         when(userService.getAllUsers()).thenReturn(fakeUsers);
         mockMvc.perform(get("/api/v1/users"))
                 .andExpect(status().isOk())

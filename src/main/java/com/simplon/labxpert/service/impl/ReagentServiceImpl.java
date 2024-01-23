@@ -121,7 +121,7 @@ public class ReagentServiceImpl implements ReagentService {
                 throw new CustomNotFoundException("The expiration date is in The past ", HttpStatus.BAD_REQUEST);
             }
             reagent.setReagentStatus(ReagentStatus.IN_STOCK_VALID);
-            reagent.setReagentSerialNumber(utilMethods.generateSerialNumber());
+            reagent.setReagentSerialNumber(UtilMethods.generateSerialNumber());
             return reagentMappper.toDTO(reagentRepository.save(reagent));
         }
     }

@@ -10,5 +10,5 @@ public interface AnalysisService {
     AnalysisDTO findAnalysisById(Long id);
     AnalysisDTO createAnalysis(AnalysisDTO analysisDTO);
     AnalysisDTO updateAnalysis(AnalysisDTO analysisDTO);
-    void deleteAnalysis(Long id);
+    String deleteAnalysis(Long id);
 }
