@@ -5,7 +5,7 @@
 Welcome to the LabXpert project, a comprehensive management system designed to optimize operations at the TechLab medical laboratory. This document provides information about the project, its objectives, and includes a UML class diagram illustrating the system's design.
 
 ## UML Class Diagram
-![LabXpert Diagram](DClass.jpg)
+![LabXpert Diagram](DClass2.jpg)
 The above class diagram presents the structure of the LabXpert system. It details the relationships between different entities such as samples, ongoing analyses, results, patients, reagents, and users. The main classes, their attributes, methods, and relationships are visually represented to provide an overview of the system's design.
 
 
