@@ -20,7 +20,6 @@ import java.util.List;
 @Getter
 @Setter
 public class SampleDTO {
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private long sampleID;
 
     @NotNull(message = "Analysis type cannot be null")
@@ -35,12 +34,10 @@ public class SampleDTO {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private SampleStatus sampleStatus;
 
+    //  TODO : @ayoub ait si ahmad THIS SHOULD NOT DISPLAY THE IN SOME CASES
     @NotNull(message = "Patient is mandatory")
     private PatientDTO patientDTO;
-    /*
-     * TODO : TO @ayoub ait si ahmad MAKE A JSON VIEW FOR THIS DEPENDING ON THE USE CASE
-     * beacause this can cause a mapping error
-     * check also if i need it or not
-     * private List<Analysis> analyses;
-     */
+
+    //  TODO : @ayoub ait si ahmad THIS SHOULD NOT DISPLAY THE IN SOME CASES
+    private AnalysisDTO analysisDTO;
 }

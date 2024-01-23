@@ -41,10 +41,8 @@ public class Patient {
     private String address;
     @Column(name = "phoneNumber", nullable = false)
     private String phoneNumber;
-    // TODO : TO @Ayoub ait si ahmad CORRECT THAT SHOULD RETURN THE LIST OF SAMPLES DEPENDING ON THE CONTEXT
-    // TODO : TO @Ayoub ait si ahmad CORRECT ALSO THE FETCH TYPE AND THE CASCADE TYPE AND THE DELETE TYPE
+
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnore
     private List<Sample> samples;
     //TODO :TO @chaimaa mahy ADD THE HISTORY OF THE ANALYSIS
 }
