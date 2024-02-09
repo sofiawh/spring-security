@@ -35,38 +35,6 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 import javax.servlet.FilterChain;
-/*
-@EnableWebSecurity
-public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
-
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("user").password(passwordEncoder().encode("password")).roles("USER")
-                .and()
-                .withUser("admin").password(passwordEncoder().encode("admin")).roles("ADMIN");
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/user/**").hasRole("USER")
-                .and()
-                .formLogin()
-                .loginPage("/login")
-                .permitAll()
-                .and()
-                .logout()
-                .permitAll();
-    }
-}
-*/
 
 @Configuration
 @EnableWebSecurity
@@ -78,8 +46,6 @@ public class SpringSecurityConfig /*extends WebSecurityConfigurerAdapter*/ {
         private RsakeysConfig rsakeysConfig;
         private PasswordEncoder passwordEncoder;
 
-
-      //// 222222
        //private CustomUserDetailsService customUserDetailsService;
 
         public SpringSecurityConfig(RsakeysConfig rsakeysConfig, PasswordEncoder passwordEncoder){
@@ -118,13 +84,6 @@ public class SpringSecurityConfig /*extends WebSecurityConfigurerAdapter*/ {
                     .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
                     .httpBasic(Customizer.withDefaults())
                     .build();
-            /*authorizeHttpRequests(auth -> {
-                auth.requestMatchers("/admin").hasRole("ADMIN");
-                auth.requestMatchers("/user").hasRole("USER");
-//                auth.mvcMatchers("/admin").hasRole("ADMIN")
-//                        .mvcMatchers("/user").hasRole("TECHNICIAN");
-                auth.anyRequest().authenticated();
-          }).formLogin(Customizer.withDefaults()).build();*/
         }
     @Bean
     JwtDecoder jwtDecoder(){
@@ -137,66 +96,7 @@ public class SpringSecurityConfig /*extends WebSecurityConfigurerAdapter*/ {
         return new NimbusJwtEncoder(jwkSource);
     }
 
-/*
-        @Bean
-        public UserDetailsService users() {
-            UserDetails user = User.builder()
-                    .username("user")
-                    .password(passwordEncoder().encode("user"))
-                    .roles("TECHNICIAN").build();
-            UserDetails admin = User.builder()
-                    .username("admin")
-                    .password(passwordEncoder().encode("admin"))
-                    .roles("USER", "ADMIN").build();
-            return new InMemoryUserDetailsManager(user, admin);
-        }
-
-        @Bean
-        public BCryptPasswordEncoder passwordEncoder() {
-            return new BCryptPasswordEncoder();
-        }
-        /*
-    @Bean
-    public AuthenticationManager authenticationManager(HttpSecurity http, BCryptPasswordEncoder bCryptPasswordEncoder) throws Exception {
-        AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
-        authenticationManagerBuilder.userDetailsService(customUserDetailsService).passwordEncoder(bCryptPasswordEncoder);
-        return authenticationManagerBuilder.build();
-    }
-*/
 
     }
 
 
-
-
-//    private final UserDetailsService userDetailsService;
-//
-//    public SpringSecurityConfig(UserDetailsService userDetailsService) {
-//        this.userDetailsService = userDetailsService;
-//    }
-//
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-//    }
-//
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//        http
-//                .authorizeRequests()
-//                .antMatchers("/public/**").permitAll()
-//                .anyRequest().authenticated()
-//                .and()
-//                .formLogin()
-//                .loginPage("/login")
-//                .permitAll()
-//                .and()
-//                .logout()
-//                .logoutUrl("/logout")
-//                .permitAll();
-//    }
-//
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }

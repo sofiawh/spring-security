@@ -28,9 +28,6 @@ public class CustomUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("User not found with username: " + username);
         }
 
-        //com.simplon.labxpert.model.entity.User user = user.get();
-
-        //return convertToUserDetails(userEntity);
         return new User(
                 user.get().getUsername(),
                 user.get().getPassword(),
