@@ -79,7 +79,8 @@ public class AuthController {
             String username,
             String password,
             boolean withRefreshToken,
-            String refreshToken){
+            String refreshToken)
+    {
         String subject=null;
         String scope=null;
         if(grantType.equals("password")){

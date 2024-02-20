@@ -31,7 +31,7 @@ public class LoginController {
         );
 
     }
-    @PreAuthorize("hasAuthority('SCOPE_ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PostMapping("/saveData")
     public Map<String, Object> saveData(String data){
         return Map.of(

@@ -56,7 +56,7 @@ public class SampleController {
      * @return the created sample
      */
     @PostMapping
-    @PreAuthorize("hasAnyAuthority('SCOPE_ROLE_LABORATORY_MANAGER', 'SCOPE_ROLE_TECHNICIAN')")
+    @PreAuthorize("hasAnyAuthority('SCOPE_ROLE_LABORATORY_MANAGER', 'SCOPE_ROLE_TECHNICIAN', 'ROLE_ADMIN')")
     public ResponseEntity<SampleDTO> createSample(@Valid @RequestBody SampleDTO sampleDTO) {
         LOGGER.info("Creating sample");
         SampleDTO createdSample = sampleService.createSample(sampleDTO);
@@ -70,6 +70,7 @@ public class SampleController {
      * @return the sample
      */
     @GetMapping("/{sampleId}")
+    @PreAuthorize("hasAnyAuthority('SCOPE_ROLE_LABORATORY_MANAGER', 'SCOPE_ROLE_TECHNICIAN', 'ROLE_ADMIN')")
     public ResponseEntity<SampleDTO> getSampleByID(@PathVariable long sampleId) {
         SampleDTO sample = sampleService.getSampleById(sampleId);
         LOGGER.info("sample has been fetched successfully ");
@@ -83,7 +84,7 @@ public class SampleController {
      * @return a message of success
      */
     @DeleteMapping("/{sampleId}")
-    @PreAuthorize("hasAnyAuthority('SCOPE_ROLE_LABORATORY_MANAGER', 'SCOPE_ROLE_TECHNICIAN')")
+    @PreAuthorize("hasAnyAuthority('SCOPE_ROLE_LABORATORY_MANAGER', 'SCOPE_ROLE_TECHNICIAN', 'ROLE_ADMIN')")
     public ResponseEntity<String> deleteSample(@PathVariable long sampleId) {
         LOGGER.info("Deleting sample with id {}", sampleId);
         sampleService.deleteSample(sampleId);

@@ -4,7 +4,7 @@ pipeline {
     tools {
         // TODO : To @chaimaa WHEN YOU SET UP YOUR JENKINS ADD THIS TO THE TOOLS SECTION
         maven 'Maven'
-        jdk 'java8'
+        jdk 'java17'
         git 'git'
     }
 

@@ -33,13 +33,18 @@ import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import javax.servlet.FilterChain;
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class SpringSecurityConfig /*extends WebSecurityConfigurerAdapter*/ {
+public class SpringSecurityConfig /*extends WebSecurityConfigurerAdapter*/
+{
 
         @Autowired
         private CustomUserDetailsService customUserDetailsService;
@@ -54,11 +59,11 @@ public class SpringSecurityConfig /*extends WebSecurityConfigurerAdapter*/ {
         }
 
         //@Bean
-        public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception{
+        /*public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception{
             return authenticationConfiguration.getAuthenticationManager();
-        }
+        }*/
         @Bean
-        public AuthenticationManager authenticationManager(/*UserDetailsService userDetailsService */CustomUserDetailsService userDetailsService){
+        public AuthenticationManager authenticationManager(CustomUserDetailsService userDetailsService){
            var authProvider = new DaoAuthenticationProvider();
            authProvider.setPasswordEncoder(passwordEncoder);
            authProvider.setUserDetailsService(userDetailsService);
@@ -78,6 +83,7 @@ public class SpringSecurityConfig /*extends WebSecurityConfigurerAdapter*/ {
         public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
             return http
                     .csrf(csrf->csrf.disable())
+                    .cors(Customizer.withDefaults())
                     .authorizeRequests(auth->auth.antMatchers("/token/**").permitAll())
                     .authorizeRequests(auth->auth.anyRequest().authenticated())
                     .sessionManagement(sess-> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -94,6 +100,17 @@ public class SpringSecurityConfig /*extends WebSecurityConfigurerAdapter*/ {
         JWK jwk= new RSAKey.Builder(rsakeysConfig.publicKey()).privateKey(rsakeysConfig.privateKey()).build();
         JWKSource<SecurityContext> jwkSource= new ImmutableJWKSet<>(new JWKSet(jwk));
         return new NimbusJwtEncoder(jwkSource);
+    }
+    @Bean
+    CorsConfigurationSource corsConfigurationSource(){
+        CorsConfiguration corsConfiguration=new CorsConfiguration();
+        corsConfiguration.addAllowedOrigin("*");
+        corsConfiguration.addAllowedMethod("*");
+        corsConfiguration.addAllowedHeader("*");
+        //corsConfiguration.setExposedHeaders(List.of("x-auth-token"));
+        UrlBasedCorsConfigurationSource source=new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**",corsConfiguration);
+        return source;
     }
 
 

@@ -45,7 +45,7 @@ public class PatientController {
      * The HTTP status is OK (200) if the operation is successful, INTERNAL_SERVER_ERROR (500) otherwise.
      */
     @GetMapping
-    @PreAuthorize("hasAnyAuthority('SCOPE_ROLE_LABORATORY_MANAGER', 'SCOPE_ROLE_TECHNICIAN')")
+    @PreAuthorize("hasAnyAuthority('SCOPE_ROLE_ADMIN', 'SCOPE_ROLE_TECHNICIAN')")
     public ResponseEntity<List<PatientDTO>> getAllPatients() {
         LOGGER.info("Fetching all patients");
         List<PatientDTO> patientsDTOS = patientService.getAllPatients();
@@ -69,7 +69,7 @@ public class PatientController {
      */
 
     @PostMapping
-    @PreAuthorize("hasAnyAuthority('SCOPE_ROLE_LABORATORY_MANAGER', 'SCOPE_ROLE_TECHNICIAN')")
+    @PreAuthorize("hasAnyAuthority('SCOPE_ROLE_ADMIN', 'SCOPE_ROLE_TECHNICIAN')")
     public ResponseEntity<PatientDTO> createPatient(@Valid @RequestBody PatientDTO patientDTO) {
         PatientDTO createdPatient = patientService.createPatient(patientDTO);
         LOGGER.info("Patient created successfully");
@@ -93,7 +93,7 @@ public class PatientController {
      */
 
     @GetMapping("/{patientId}")
-    @PreAuthorize("hasAnyAuthority('SCOPE_ROLE_LABORATORY_MANAGER', 'SCOPE_ROLE_TECHNICIAN')")
+    @PreAuthorize("hasAnyAuthority('SCOPE_ROLE_ADMIN', 'SCOPE_ROLE_TECHNICIAN')")
     public ResponseEntity<PatientDTO> getPatientByID(@PathVariable long patientId) {
         PatientDTO patient = patientService.getPatientById(patientId);
         LOGGER.info("patient has been fetched successfully ");
@@ -116,7 +116,7 @@ public class PatientController {
      * otherwise if there is other exception it responds with an HTTP status INTERNAL_SERVER_ERROR (500) .
      */
     @PutMapping("/{patientId}")
-    @PreAuthorize("hasAnyAuthority('SCOPE_ROLE_LABORATORY_MANAGER', 'SCOPE_ROLE_TECHNICIAN')")
+    @PreAuthorize("hasAnyAuthority('SCOPE_ROLE_ADMIN', 'SCOPE_ROLE_TECHNICIAN')")
     public ResponseEntity<PatientDTO> updatePatient(@PathVariable long patientId, @Valid @RequestBody PatientDTO patient) {
         PatientDTO updatedPatient = patientService.updatePatient(patientId, patient);
         LOGGER.info("patient has been updated successfully ");
@@ -136,7 +136,7 @@ public class PatientController {
      */
 
     @DeleteMapping("/{patientId}")
-    @PreAuthorize("hasAnyAuthority('SCOPE_ROLE_LABORATORY_MANAGER', 'SCOPE_ROLE_TECHNICIAN')")
+    @PreAuthorize("hasAnyAuthority('SCOPE_ROLE_ADMIN', 'SCOPE_ROLE_TECHNICIAN')")
     public ResponseEntity<String> deletePatient(@PathVariable long patientId) {
         patientService.deletePatient(patientId);
         LOGGER.info("patient has been deleted successfully ");
@@ -158,7 +158,7 @@ public class PatientController {
      * otherwise if there is an exception it responds with an HTTP status INTERNAL_SERVER_ERROR (500) .
      */
     @GetMapping("/byEmail")
-    @PreAuthorize("hasAnyAuthority('SCOPE_ROLE_LABORATORY_MANAGER', 'SCOPE_ROLE_TECHNICIAN')")
+    @PreAuthorize("hasAnyAuthority('SCOPE_ROLE_ADMIN', 'SCOPE_ROLE_TECHNICIAN')")
     public ResponseEntity<PatientDTO> getPatientByEmail(@RequestParam String email) {
         PatientDTO patient = patientService.getPatientByEmail(email);
         LOGGER.info("patient fetched successfully ");
